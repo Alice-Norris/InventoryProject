@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_message"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/username_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/username_input_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/username_input"
+        app:layout_constraintEnd_toEndOf="@id/firstname_label"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="AUTOFILL_HINT_NEW_USERNAME"
+        android:ems="10"
+        android:hint="@string/username_input_label"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/first_name_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/username_label"
+        app:layout_constraintTop_toBottomOf="@id/welcome_message" />
+
+    <TextView
+        android:id="@+id/firstname_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/firstname_input_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/first_name_input"
+        app:layout_constraintEnd_toStartOf="@+id/first_name_input"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_constraintEnd_toStartOf="@id/editTextTextPersonName2" />
+
+    <EditText
+        android:id="@+id/first_name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="AUTOFILL_HINT_PERSON_NAME_GIVEN"
+        android:ems="10"
+        android:hint="@string/firstname_input_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/lastname_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/firstname_label"
+        app:layout_constraintTop_toBottomOf="@+id/username_input" />
+
+    <TextView
+        android:id="@+id/lastname_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lastname_input_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/lastname_input"
+        app:layout_constraintEnd_toEndOf="@id/firstname_label"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/lastname_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="AUTOFILL_HINT_PERSON_NAME_FAMILY"
+        android:ems="10"
+        android:hint="@string/lastname_input_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@id/password_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lastname_label"
+        app:layout_constraintTop_toBottomOf="@+id/first_name_input" />
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="AUTOFILL_HINT_NEW_PASSWORD"
+        android:ems="10"
+        android:hint="@string/password_input_hint"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/password_label"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_input" />
+
+
+    <TextView
+        android:id="@+id/password_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/password_input_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/password_input"
+        app:layout_constraintEnd_toEndOf="@id/firstname_label"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Strings for login and register fragments-->
+    <string name="app_name">My Application</string>
+
+    <string name="welcome_message">Welcome to the Inventory!</string>
+
+    <string name="login_message">Please log in to continue.</string>
+
+    <string name="register_message">Register a new account.\n(You will automatically be logged in)</string>
+
+    <string name="username_input_label">Username:</string>
+    <string name="username_input_hint">Please enter your username.</string>
+
+    <string name="firstname_input_label">First Name:</string>
+    <string name="firstname_input_hint">Please enter your first name.</string>
+
+    <string name="lastname_input_label">Last Name:</string>
+    <string name="lastname_input_hint">Please enter your last name.</string>
+
+    <string name="password_input_label">Password:</string>
+    <string name="password_input_hint">Please enter your password.</string>
+
+    <string name="login_button_text">Login</string>
+    <string name="register_button_text">Register</string>
+    <!-- End strings for login and register fragments -->
+
+    <!--Begin strings for welcome layout-->
+    <string name="login_tab">Login</string>
+    <string name="register_tab">Register</string>
+    <!--End strings for welcome layout-->
+</resources>
