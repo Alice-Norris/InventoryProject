@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/alice/AndroidStudioProjects/InventoryProject/app/src/main/res/layout/login_fragment.xml" value="0.22" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/InventoryProject/app/src/main/res/layout/register_fragment.xml" value="0.2796875" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/InventoryProject/app/src/main/res/layout/welcome.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/MyApplication/app/src/main/res/layout/layout.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/MyApplication/app/src/main/res/layout/login.xml" value="0.14479166666666668" />
