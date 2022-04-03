@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ProjectOneInventoryApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="login_user_id">User ID:</string>
+    <string name="login_user_id_hint">Please enter your User ID.</string>
+    <string name="login_passwd">Password:</string>
+    <string name="login_passwd_hint">Please enter your password.</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="firstName">First Name:</string>
+    <string name="firstNameHint">Please enter your first name.</string>
+    <string name="lastName">Last Name:</string>
+    <string name="lastNameHint">Please enter your last name.</string>
+    <string name="welcome">Welcome to Inventory App!</string>
+    <string name="registerButton"><u>Need to register?</u></string>
+    <string name="lastNameLabel">Last Name:</string>
+    <string name="firstNameInput">First Name:</string>
+</resources>
