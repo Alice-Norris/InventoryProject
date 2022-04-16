@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/registerUsernameLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="@id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerUsernameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -23,13 +23,15 @@
         android:hint="@string/login_user_id_hint"
         android:inputType="text"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/registerPasswdInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/registerUsernameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameInput"
+        tools:autofillHints="username" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPasswdInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,13 +39,15 @@
         android:hint="@string/login_passwd_hint"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/registerPasswordLabel"
-        app:layout_constraintTop_toBottomOf="@+id/registerUsernameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/registerUsernameInput"
+        tools:autofillHints="password" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/registerPasswordLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,13 +56,15 @@
         app:layout_constraintEnd_toEndOf="@id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/firstNameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="first-name"
         android:ems="10"
         android:hint="@string/firstNameHint"
         android:inputType="textPersonName"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/lastNameInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -66,30 +72,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/lastNameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="last-name"
         android:ems="10"
         android:hint="@string/lastNameHint"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/registerUsernameInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/lastNameLabel"
         app:layout_constraintTop_toBottomOf="@+id/firstNameInput" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/firstNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/firstNameInput"
+        android:text="@string/firstNameLabel"
         app:layout_constraintBaseline_toBaselineOf="@id/firstNameInput"
         app:layout_constraintEnd_toStartOf="@id/firstNameInput"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/lastNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,14 +106,13 @@
         app:layout_constraintEnd_toEndOf="@id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/registerButton"
+        android:textColor="@color/dark_liver"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPasswdInput" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswdInput"
+        tools:layout_editor_absoluteX="305dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

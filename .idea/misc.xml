@@ -3,18 +3,55 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.1865" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border.xml" value="0.2025" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border_end_left.xml" value="0.2025" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border_end_right.xml" value="0.2025" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border_header.xml" value="0.1865" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border_header_end_left.xml" value="0.1865" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/border_header_end_right.xml" value="0.1865" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.196" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.253" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.2025" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/drawable/ic_delete_button.xml" value="0.1" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/activity_main.xml" value="0.2946593001841621" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/add_item.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/add_item_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/allow_notification_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/edit_item_dialog.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/inventory_item.xml" value="0.5" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/login.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/login_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/navigation_drawer.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/notification_request_dialog.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/register_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/remove_item.xml" value="0.5" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/remove_item_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/remove_item_warning.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/remove_sku_warning.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/layout/switch_item.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/menu/navigation_drawer.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/AliceNorrisInventoryProject/app/src/main/res/menu/top_app_bar.xml" value="0.2375" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/border.xml" value="0.22" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/border_end.xml" value="0.2025" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/border_end_right.xml" value="0.2025" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.332" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/ic_delete_button.xml" value="0.2025" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.332" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/border.xml" value="0.12031408308004053" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/fragment_home.xml" value="0.2128623188405797" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/fragment_notifications.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/inventory.xml" value="0.25" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/inventory_item.xml" value="0.9" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/login.xml" value="0.33" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/login_fragment.xml" value="0.4074074074074074" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/register.xml" value="0.33" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/layout/register_fragment.xml" value="0.3605072463768116" />
         <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/alice/AndroidStudioProjects/ProjectOneApplication/app/src/main/res/menu/inventoryMenu.xml" value="0.2037037037037037" />
       </map>
     </option>
   </component>

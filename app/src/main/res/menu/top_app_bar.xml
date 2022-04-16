@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/addItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_add_box_24"
+        android:iconTint="@color/dark_liver"
+        android:title="@string/add_item"
+        android:visible="true"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/removeItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_remove_box_24"
+        android:iconTint="@color/dark_liver"
+        android:title="@string/remove_item"
+        android:visible="true"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/app_bar_switch"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
+        android:title="Out of Stock Notifications"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="never" />
+</menu>

@@ -1,19 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/inventory_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    android:layout_height="match_parent">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/add_button_accessibility"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inventoryList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/itemSku"
+        style="@style/InventoryTextViewEndLeft"
+        android:layout_height="0dp"
+        android:background="@drawable/border_header_end_left"
+        android:ems="4"
+        android:gravity="center"
+        android:maxLength="6"
+        android:text="@string/itemSkuHeader"
+        app:layout_constraintBottom_toBottomOf="@id/deleteHeader"
+        app:layout_constraintEnd_toStartOf="@+id/productName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/deleteHeader" />
+
+    <TextView
+        android:id="@+id/productName"
+        style="@style/InventoryTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_header"
+        android:gravity="center"
+        android:text="@string/itemNameHeader"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/deleteHeader"
+        app:layout_constraintEnd_toStartOf="@+id/productQty"
+        app:layout_constraintStart_toEndOf="@+id/itemSku"
+        app:layout_constraintTop_toTopOf="@id/deleteHeader" />
+
+    <TextView
+        android:id="@+id/productQty"
+        style="@style/InventoryTextViewEndRight"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/border_header_end_right"
+        android:ems="3"
+        android:gravity="center"
+        android:text="@string/itemQtyHeader"
+        app:layout_constraintBottom_toBottomOf="@id/deleteHeader"
+        app:layout_constraintEnd_toStartOf="@+id/deleteHeader"
+        app:layout_constraintStart_toEndOf="@+id/productName"
+        app:layout_constraintTop_toTopOf="@id/deleteHeader" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/inventoryToolbar"
+        style="@style/ToolbarStyle"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintBottom_toTopOf="@id/productName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/top_app_bar"
+        app:navigationIcon="@drawable/ic_menu_24" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/navigation_drawer" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/deleteHeader"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/border_header"
+        android:clickable="false"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productQty"
+        app:layout_constraintTop_toBottomOf="@id/inventoryToolbar"
+        app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

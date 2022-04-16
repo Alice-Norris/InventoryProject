@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/edit_item_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/update_item_dialog_header"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="@color/amaranth_pink"
+        android:text="@string/update_item_header"
+        android:textAlignment="center"
+        android:textColor="#424242"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/update_item_current_sku"
+        style="@style/DialogTextView"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_current_sku"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_dialog_header" />
+
+    <TextView
+        android:id="@+id/update_item_current_name"
+        style="@style/DialogTextView"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_current_name"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_sku_input" />
+
+    <TextView
+        android:id="@+id/update_item_current_qty"
+        style="@style/DialogTextView"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_current_qty"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_name_input" />
+
+    <EditText
+        android:id="@+id/update_item_sku_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/update_item_sku_input"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/dark_liver"
+        android:textColorHint="#545454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/update_item_sku_label"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_current_sku" />
+
+    <EditText
+        android:id="@+id/update_item_name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:hint="@string/update_item_name_input"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#545454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/update_item_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_current_name" />
+
+    <EditText
+        android:id="@+id/update_item_qty_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/update_item_qty_input"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#545454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/update_item_qty_label"
+        app:layout_constraintTop_toBottomOf="@+id/update_item_current_qty" />
+
+    <TextView
+        android:id="@+id/update_item_sku_label"
+        style="@style/DialogTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_sku_label"
+        android:textAlignment="center"
+        app:layout_constraintBaseline_toBaselineOf="@id/update_item_sku_input"
+        app:layout_constraintEnd_toEndOf="@id/update_item_qty_label"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/update_item_name_label"
+        style="@style/DialogTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_product_name"
+        android:textAlignment="center"
+        app:layout_constraintBaseline_toBaselineOf="@id/update_item_name_input"
+        app:layout_constraintEnd_toEndOf="@id/update_item_qty_label"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/update_item_qty_label"
+        style="@style/DialogTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_item_qty_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/update_item_qty_input"
+        app:layout_constraintEnd_toStartOf="@+id/update_item_qty_input"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

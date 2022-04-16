@@ -6,44 +6,55 @@
     style="@style/Theme.ProjectOneApplication"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/welcomeMessage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/welcome"
-        android:textSize="24sp"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/welcomeToolbar"
+        style="@style/ToolbarStyle"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintBottom_toTopOf="@id/welcomeTabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        app:layout_constraintTop_toBottomOf="@id/welcomeTabs"
-        tools:layout_editor_absoluteX="0dp"
-        tools:textAlignment="center" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeTabs" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/welcomePager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeMessage" />
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessage">
+
+    </androidx.viewpager2.widget.ViewPager2>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/welcomeTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeToolbar">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="@string/login" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="@string/register" />
 
     </com.google.android.material.tabs.TabLayout>
 

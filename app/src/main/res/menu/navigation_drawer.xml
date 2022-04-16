@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_menu">
+
+    <item
+        android:id="@+id/nav_greeting"
+        android:contentDescription="@string/nav_greeting_desc"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/nav_greeting" />
+    <item
+        android:id="@+id/nav_inventory"
+        android:icon="@drawable/ic_inventory_24"
+        android:title="@string/nav_inventory"
+        android:contentDescription="@string/nav_open_inventory_desc"/>
+
+    <item
+        android:id="@+id/nav_out_of_stock"
+        android:icon="@drawable/ic_out_of_stock_24"
+        android:title="@string/nav_out_of_stock"
+        android:contentDescription="@string/nav_out_of_stock_desc"/>
+
+    <item
+        android:id="@+id/nav_log_out"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:title="@string/nav_logout"
+        android:contentDescription="@string/nav_logout"/>
+
+</menu>
