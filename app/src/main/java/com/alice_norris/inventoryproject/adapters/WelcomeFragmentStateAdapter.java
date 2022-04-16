@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
+import com.alice_norris.inventoryproject.activities.LoginActivity;
 import com.alice_norris.inventoryproject.fragments.LoginFragment;
 import com.alice_norris.inventoryproject.fragments.RegisterFragment;
 

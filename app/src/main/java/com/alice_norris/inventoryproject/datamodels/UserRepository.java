@@ -1,6 +1,7 @@
 package com.alice_norris.inventoryproject.datamodels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -12,46 +13,57 @@ import java.util.List;
 
 //repository, set to use with the user database.
 public class UserRepository {
-    private UserDao repositoryUserDao;
-    private int usersMatched;
+    private UserDao loginUserDao;
     LiveData<User> matchedUser;
 
     //constructor
     public UserRepository(Application application){
         InventoryDatabase userDb = InventoryDatabase.getDatabase(application);
-        repositoryUserDao = userDb.userDao();
-        login("null", "null");
-        matchedUser = getUser();
+        loginUserDao = userDb.userDao();
+        matchedUser = loginUserDao.login("null", "null");
+
+        if(matchedUser.getValue() == null){
+            Log.d("!!!RETURNED-DATA!!!", "fuck you");
+        } else if (matchedUser.getValue() != null) {
+            Log.d("!!!RETURNED_DATA!!!", matchedUser.getValue().toString());
+        } else {
+            Log.d("!!!RETURNED_DATA!!!", matchedUser.toString());
+        }
     }
 
-    //runs login query
+    //login query
     public void login(String username, String password){
-    LoginRunner loginRunner = new LoginRunner(username, password);
+        Log.d("!!!PASSED_DATA", username+" "+password);
         //execute query
     InventoryDatabase.databaseWriteExecutor
-            .execute(loginRunner);
+            .execute(() -> {
+                matchedUser = loginUserDao.login(username, password);
+                Log.d("!!!RETURNED_DATA", matchedUser.toString());
+                if (matchedUser.getValue() == null) {
+                    Log.d("!!!RETURNED-DATA!!!", "GOT NULL BACK!!!");
+                } else if(matchedUser.getValue() != null){
+                    Log.d("!!!RETURNED_DATA!!!", matchedUser.getValue().toString());
+                } else {
+                    Log.d("!!!RETURNED_DATA!!!", matchedUser.toString());
+                }
+
+            });
     }
 
-    //method for registering a new user
+    //register query
     public void register(User newUser){
         InventoryDatabase.databaseWriteExecutor
-                .execute(() -> repositoryUserDao.addUser(newUser));
-    }
-
-    private class LoginRunner implements Runnable{
-        private String username;
-        private String password;
-
-        LoginRunner(String username, String password){
-            this.username = username;
-            this.password = password;
-        }
-        public void run(){
-            matchedUser = repositoryUserDao.login(username, password);
-        }
+                .execute(() ->{
+                   loginUserDao.register(newUser);
+                });
     }
 
     public LiveData<User> getUser(){
-        return matchedUser;
+        if (matchedUser != null) {
+            return matchedUser;
+        } else {
+            return null;
+        }
     }
+
 }

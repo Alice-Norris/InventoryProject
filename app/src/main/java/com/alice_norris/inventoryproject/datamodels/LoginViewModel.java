@@ -4,16 +4,17 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 public class LoginViewModel extends AndroidViewModel {
+
     private LiveData<User> liveUserData;
     private UserRepository loginUserRepository;
-
+    private User currentUser;
     public LoginViewModel(Application application){
         super(application);
         loginUserRepository = new UserRepository(application);
         liveUserData = loginUserRepository.getUser();
+        currentUser = liveUserData.getValue();
     }
 
     public LiveData<User> getUser(){
@@ -22,6 +23,7 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void login(String username, String password){
         loginUserRepository.login(username, password);
+        ;
     }
 
     public void register(User user){
