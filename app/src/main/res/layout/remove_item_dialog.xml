@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/remove_item_dialog_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/remove_item_sku_label"
         style="@style/DialogTextView"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remove_item_dialog_header" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/remove_item_sku_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

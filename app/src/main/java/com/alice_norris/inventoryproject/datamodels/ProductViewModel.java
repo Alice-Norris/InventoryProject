@@ -26,6 +26,10 @@ public class ProductViewModel extends AndroidViewModel {
         productRepository.insertProduct(newProduct);
     }
 
+    public void removeProduct(String sku){
+        productRepository.deleteProduct(sku);
+    }
+
     public void inventory(){
         this.allProducts = productRepository.getAllProducts();
     }

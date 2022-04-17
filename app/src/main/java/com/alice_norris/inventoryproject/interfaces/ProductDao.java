@@ -29,4 +29,6 @@ public interface ProductDao {
     @Query("SELECT * FROM products WHERE qty IS 0")
     LiveData<List<Product>> getZeroQtyProducts();
 
+    @Query("SELECT * FROM products WHERE product_sku LIKE :productSku")
+    LiveData<Product> getProductBySku(String productSku);
 }

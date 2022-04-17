@@ -14,7 +14,7 @@ public class ProductRepository {
     private final ProductDao productDao;
     private final LiveData<List<Product>> allProducts;
     private final LiveData<List<Product>> zeroQtyProducts;
-
+    private LiveData<Product> requestedProduct;
     public ProductRepository(Application application) {
         InventoryDatabase ProductDb = InventoryDatabase.getDatabase(application);
         productDao = ProductDb.productDao();
@@ -31,9 +31,17 @@ public class ProductRepository {
                 .execute(() -> productDao.addProduct(product));
     }
 
-    void deleteProduct(Product product){
+    void deleteProduct(String sku){
         InventoryDatabase.databaseWriteExecutor
-                .execute(() -> productDao.deleteProduct(product.productSku));
+                .execute(() -> productDao.deleteProduct(sku));
+    }
+
+    LiveData<Product> getItemBySku(String sku){
+        InventoryDatabase.databaseWriteExecutor
+                .execute(() -> {
+                    requestedProduct = productDao.getProductBySku(sku);
+                });
+        return requestedProduct;
     }
 
     LiveData<List<Product>> getZeroQtyProducts(){ return zeroQtyProducts; }
