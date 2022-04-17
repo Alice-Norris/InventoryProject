@@ -12,9 +12,10 @@ import java.util.List;
 
 public class ProductRepository {
     private final ProductDao productDao;
-    private final LiveData<List<Product>> allProducts;
-    private final LiveData<List<Product>> zeroQtyProducts;
+    private LiveData<List<Product>> allProducts;
+    private LiveData<List<Product>> zeroQtyProducts;
     private LiveData<Product> requestedProduct;
+
     public ProductRepository(Application application) {
         InventoryDatabase ProductDb = InventoryDatabase.getDatabase(application);
         productDao = ProductDb.productDao();
@@ -34,6 +35,10 @@ public class ProductRepository {
     void deleteProduct(String sku){
         InventoryDatabase.databaseWriteExecutor
                 .execute(() -> productDao.deleteProduct(sku));
+    }
+
+    void getProductsBySku(){
+        this.allProducts = productDao.getProductsBySku();
     }
 
     LiveData<Product> getItemBySku(String sku){

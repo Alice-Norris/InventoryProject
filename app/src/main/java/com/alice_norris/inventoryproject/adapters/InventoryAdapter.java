@@ -1,40 +1,36 @@
 package com.alice_norris.inventoryproject.adapters;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
-import com.alice_norris.inventoryproject.datamodels.Product;
 import com.alice_norris.inventoryproject.R;
-import java.util.ArrayList;
-import java.util.List;
+import com.alice_norris.inventoryproject.datamodels.Product;
+import com.alice_norris.inventoryproject.datamodels.ProductViewHolder;
 
-public class InventoryAdapter extends ListAdapter<Product, InventoryAdapter.ViewHolder> {
-    private LiveData<List<Product>> products = null;
+public class InventoryAdapter extends ListAdapter<Product, ProductViewHolder> {
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView itemQty;
-        private final TextView itemName;
-        private final TextView itemSku;
+    public InventoryAdapter(@NonNull DiffUtil.ItemCallback<Product> diffCallback){
+        super(diffCallback);
+    }
 
-        public ViewHolder(View view) {
-            super(view);
-            this.itemQty = view.findViewById(R.id.entryProductQty);
-            this.itemName = view.findViewById(R.id.entryProductName);
-            this.itemSku = view.findViewById(R.id.entryProductSku);
-        }
+    @NonNull
+    @Override
+    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        Button deleteButton = parent.findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(view -> {
 
-        public void bind(String quantity, String name, String sku) {
-            itemQty.setText(quantity);
-            itemName.setText(name);
-            itemSku.setText(sku);
-        }
+        });
+        return ProductViewHolder.create(parent);
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Product currentProduct = getItem(position);
+        holder.bind(currentProduct.productQuantity, currentProduct.productName, currentProduct.productSku);
+
     }
 
     public static class ProductDiff extends DiffUtil.ItemCallback<Product>{
@@ -49,36 +45,4 @@ public class InventoryAdapter extends ListAdapter<Product, InventoryAdapter.View
         }
 
     }
-    public InventoryAdapter(@NonNull DiffUtil.ItemCallback<Product> diffCallback){
-        super(diffCallback);
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType){
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.inventory_item, viewGroup, false);
-
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product currentProduct = products.getValue().get(position);
-        holder.bind(currentProduct.productQuantity, currentProduct.productName, currentProduct.productSku);
-    }
-
-    @Override
-    public int getItemCount(){
-        if (products != null) {
-            return products.getValue().size();
-        } else {
-            return 0;
-        }
-    }
-
-    public void setProducts(LiveData<List<Product>> productData){
-        this.products = productData;
-    }
-
 }

@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         //creating product view model and attaching an observer
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getAllProducts()
-                 .observe(this, products -> inventoryAdapter.submitList(products));
+                 .observe(this, products -> {
+                     inventoryAdapter.submitList(products);
+                 });
 
         //creating navClickListener, setting appBar
         inventoryToolbar.setNavigationOnClickListener(view ->{
@@ -122,6 +124,11 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         });
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        productViewModel.getAllProducts().observe(this, list-> inventoryAdapter.submitList(list));
+    }
     public void startLoginActivity(){
         Intent loginIntent = new ActivityResultContracts.StartActivityForResult().createIntent(getApplicationContext(), new Intent());
         loginIntent.setClass(getApplicationContext(), LoginActivity.class);
