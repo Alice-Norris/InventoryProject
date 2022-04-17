@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -35,12 +36,26 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
 
-
     protected void onCreate(Bundle login) {
         super.onCreate(login);
         setContentView(R.layout.login);
-
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        getSupportFragmentManager().setFragmentResultListener("loginRequest", this,
+            new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                if (requestKey.equals("loginRequest")) {
+                    return;
+                } else if (requestKey.equals("registerRequest")){
+                    User newUser = new User(bundle.getString("firstName"),
+                            bundle.getString("lastName"),
+                            bundle.getString("username"),
+                            bundle.getString("password"));
+                    loginViewModel.register(newUser);
+                }
+            }
+        });
+
         //getting toolbar and setting it as the activity's action bar
         MaterialToolbar welcomeToolbar = findViewById(R.id.welcomeToolbar);
         setSupportActionBar(welcomeToolbar);

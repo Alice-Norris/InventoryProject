@@ -76,5 +76,6 @@
         android:textColor="@color/dark_liver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwdInput"
-        tools:layout_editor_absoluteX="216dp" />
+        tools:layout_editor_absoluteX="216dp"
+        android:focusable="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

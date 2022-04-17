@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.alice_norris.inventoryproject.R;
 import com.alice_norris.inventoryproject.datamodels.LoginViewModel;
 import com.alice_norris.inventoryproject.datamodels.User;
-import com.alice_norris.inventoryproject.utils.PasswordHasher;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -33,15 +32,6 @@ public class RegisterFragment extends Fragment {
         MaterialButton registerBtn = (MaterialButton) getView().findViewById(R.id.registerButton);
         registerBtn.setOnClickListener(new RegisterClickHandler());
         registerViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
-        registerViewModel.getUser().observe(getActivity(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (!user.userFirstName.equals("null")) {
-                    getActivity().setResult(Activity.RESULT_OK);
-                    getActivity().finish();
-                }
-            }
-        });
     }
 
     private class RegisterClickHandler implements View.OnClickListener{
@@ -49,7 +39,6 @@ public class RegisterFragment extends Fragment {
         TextInputEditText lastNameInput;
         TextInputEditText usernameInput;
         TextInputEditText passwdInput;
-        boolean loggedIn;
 
         public RegisterClickHandler(){
             firstNameInput = getView().findViewById(R.id.firstNameInput);
@@ -59,13 +48,21 @@ public class RegisterFragment extends Fragment {
         }
 
         public void onClick(View button){
-
-            Bundle registerData = new Bundle();
-            registerData.putString("firstName", firstNameInput.getText().toString());
-            registerData.putString("lastName", lastNameInput.getText().toString());
-            registerData.putString("username", usernameInput.getText().toString());
-            registerData.putString("password", passwdInput.getText().toString());
-            getParentFragmentManager().setFragmentResult("registerRequest", registerData);
+            String firstName = firstNameInput.getText().toString();
+            String lastName = lastNameInput.getText().toString();
+            String username = usernameInput.getText().toString();
+            String password = passwdInput.getText().toString();
+            User newUser = new User(firstName, lastName, username, password);
+            registerViewModel.register(newUser);
+            registerViewModel.login(username, password).observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User user) {
+                    if (!user.userFirstName.equals("null")) {
+                        getActivity().setResult(Activity.RESULT_OK);
+                        getActivity().finish();
+                    }
+                }
+            });
         }
     }
 }

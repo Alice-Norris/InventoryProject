@@ -1,6 +1,9 @@
 package com.alice_norris.inventoryproject.fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,40 +22,45 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements View.OnClickListener {
+    TextInputEditText usernameInput;
+    TextInputEditText passwordInput;
+    String username;
+    String password;
+
     private LoginViewModel loginFragmentViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedStateInstance){
+                             Bundle savedStateInstance) {
+        loginFragmentViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+
         return (ViewGroup) inflater.inflate(R.layout.login_fragment, container, false);
+
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle SavedInstanceState){
-        loginFragmentViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
-        loginFragmentViewModel.getUser().observe(getActivity(), new Observer<User>() {
-            @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle SavedInstanceState) {
+        MaterialButton loginBtn = getView().findViewById(R.id.loginButton);
+        loginBtn.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View button) {
+        usernameInput = (TextInputEditText) getView().findViewById(R.id.usernameInput);
+        passwordInput = (TextInputEditText) getView().findViewById(R.id.passwdInput);
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+        loginFragmentViewModel.login(username, password).observe(getActivity(), new Observer<User>() {
             public void onChanged(User user) {
-                if(!user.userFirstName.equals("null")){
-                    getActivity().setResult(Activity.RESULT_OK);
+                if (user != null && !user.userFirstName.equals("null")) {
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("userFirstName", user.userFirstName);
+                    getActivity().setResult(RESULT_OK, returnIntent);
                     getActivity().finish();
                 }
             }
         });
-        MaterialButton loginBtn = (MaterialButton) getView().findViewById(R.id.loginButton);
-        loginBtn.setOnClickListener(new LoginClickHandler());
-
-    }
-
-    private class LoginClickHandler implements View.OnClickListener{
-        TextInputEditText usernameInput;
-        TextInputEditText passwordInput;
-        public void onClick(View button){
-            usernameInput = (TextInputEditText) getView().findViewById(R.id.usernameInput);
-            passwordInput = (TextInputEditText) getView().findViewById(R.id.passwdInput);
-            String username= usernameInput.getText().toString();
-            String password = passwordInput.getText().toString();
-            loginFragmentViewModel.login(username, password);
-        }
     }
 }

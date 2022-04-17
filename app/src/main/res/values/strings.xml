@@ -15,7 +15,7 @@
     <string name="itemSkuHeader">SKU</string>
     <string name="itemNameHeader">Product Name</string>
     <string name="itemQtyHeader">Qty</string>
-    <string name="navMenuGreeting">Hello, %s</string>
+    <string name="nav_menu_greeting">Hello, %1$s</string>
     <string name="add_button_accessibility">add an item</string>
     <string name="add_item">Add an Item</string>
     <string name="remove_item">Remove an Item</string>
@@ -44,7 +44,7 @@
     <string name="allow_notification_header">Allow Notifications</string>
     <string name="allow_notifications_dialog_text">To enable out-of-stock notifications, please grant the requested permission.</string>
     <string name="notification_option_switch">Out of Stock Notifications</string>
-    <string name="nav_greeting">Hello, $s!</string>
+    <string name="nav_greeting">Hello, %1$s!</string>
     <string name="nav_inventory">View Inventory</string>
     <string name="nav_out_of_stock">View Out of Stock Report</string>
     <string name="nav_logout">Logout</string>

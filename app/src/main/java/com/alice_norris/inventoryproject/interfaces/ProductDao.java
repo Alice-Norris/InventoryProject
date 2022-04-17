@@ -1,6 +1,7 @@
 package com.alice_norris.inventoryproject.interfaces;
 
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -19,12 +20,13 @@ public interface ProductDao {
     void addProduct(Product product);
 
     //should return all orders by product sku, increasing.
-    @Query("SELECT * FROM product ORDER BY product_sku ASC")
+    @Query("SELECT * FROM products ORDER BY product_sku ASC")
     LiveData<List<Product>> getProductsBySku();
 
-    @Query("DELETE FROM product WHERE product_sku LIKE :productSku")
+    @Query("DELETE FROM products WHERE product_sku LIKE :productSku")
     void deleteProduct(String productSku);
 
-    @Query("SELECT * FROM product WHERE qty IS 0")
+    @Query("SELECT * FROM products WHERE qty IS 0")
     LiveData<List<Product>> getZeroQtyProducts();
+
 }

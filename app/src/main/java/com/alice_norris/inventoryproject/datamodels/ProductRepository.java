@@ -16,8 +16,8 @@ public class ProductRepository {
     private final LiveData<List<Product>> zeroQtyProducts;
 
     public ProductRepository(Application application) {
-        InventoryDatabase db = InventoryDatabase.getDatabase(application);
-        productDao = db.productDao();
+        InventoryDatabase ProductDb = InventoryDatabase.getDatabase(application);
+        productDao = ProductDb.productDao();
         allProducts = productDao.getProductsBySku();
         zeroQtyProducts = productDao.getZeroQtyProducts();
     }

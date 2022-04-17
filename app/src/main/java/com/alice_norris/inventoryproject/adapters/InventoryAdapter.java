@@ -25,7 +25,6 @@ public class InventoryAdapter extends ListAdapter<Product, InventoryAdapter.View
 
         public ViewHolder(View view) {
             super(view);
-
             this.itemQty = view.findViewById(R.id.entryProductQty);
             this.itemName = view.findViewById(R.id.entryProductName);
             this.itemSku = view.findViewById(R.id.entryProductSku);
@@ -65,12 +64,8 @@ public class InventoryAdapter extends ListAdapter<Product, InventoryAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if ( products == null) {
-            this.products = createEmptyProducts();
-        } else {
         Product currentProduct = products.getValue().get(position);
         holder.bind(currentProduct.productQuantity, currentProduct.productName, currentProduct.productSku);
-        }
     }
 
     @Override
@@ -84,16 +79,6 @@ public class InventoryAdapter extends ListAdapter<Product, InventoryAdapter.View
 
     public void setProducts(LiveData<List<Product>> productData){
         this.products = productData;
-    }
-
-    public LiveData<List<Product>> createEmptyProducts(){
-        List<Product> emptyProductList = new ArrayList<>();
-        while (emptyProductList.size() < 27) {
-            emptyProductList.add(new Product());
-        }
-        MutableLiveData<List<Product>> emptyProductLiveData = new MutableLiveData<>();
-        emptyProductLiveData.setValue(emptyProductList);
-        return emptyProductLiveData;
     }
 
 }
