@@ -31,11 +31,9 @@ public class ProductViewModel extends AndroidViewModel {
         productRepository.deleteProduct(sku);
     }
 
-    public void inventory(){
-        this.allProducts = productRepository.getAllProducts();
-    }
+    public void inventory(){ this.allProducts = productRepository.getAllProducts(); }
 
     public void out_of_stock(){
-        this.zeroQtyProducts = getZeroQtyProducts();
+        this.allProducts = productRepository.getZeroQtyProducts();
     }
 }

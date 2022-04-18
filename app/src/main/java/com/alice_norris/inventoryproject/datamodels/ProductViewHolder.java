@@ -15,7 +15,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
         private final TextView itemName;
         private final TextView itemSku;
         private final Button deleteButton;
-
+        private String skuToDelete;
         private ProductViewHolder(View view) {
             super(view);
             this.itemQty = view.findViewById(R.id.entryProductQty);
@@ -28,6 +28,15 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
             itemQty.setText(quantity);
             itemName.setText(name);
             itemSku.setText(sku);
+            skuToDelete = sku;
+        }
+
+        public String getSkuToDelete(){
+            return skuToDelete;
+        }
+
+        public Button getDeleteButton(){
+            return this.deleteButton;
         }
 
         public static ProductViewHolder create(ViewGroup parent) {
@@ -35,4 +44,5 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
                     .inflate(R.layout.inventory_item, parent, false);
             return new ProductViewHolder(view);
         }
+
 }

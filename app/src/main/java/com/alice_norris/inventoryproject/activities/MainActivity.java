@@ -1,14 +1,19 @@
 package com.alice_norris.inventoryproject.activities;
 
+import static android.view.MotionEvent.ACTION_BUTTON_PRESS;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -17,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,6 +33,7 @@ import com.alice_norris.inventoryproject.R;
 import com.alice_norris.inventoryproject.adapters.InventoryAdapter;
 import com.alice_norris.inventoryproject.databinding.ActivityMainBinding;
 import com.alice_norris.inventoryproject.datamodels.MainViewModel;
+import com.alice_norris.inventoryproject.datamodels.ProductViewHolder;
 import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
 import com.alice_norris.inventoryproject.fragments.AddProductDialog;
 import com.alice_norris.inventoryproject.fragments.RemoveProductDialog;
@@ -69,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         loginResultLauncher = registerForActivityResult(
                 loginActivityForResult,loginActivityResult);
 
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         //creating inventory adapter, passing in a diffutil for when the data changes
-        inventoryAdapter = new InventoryAdapter(new InventoryAdapter.ProductDiff());
+        inventoryAdapter = new InventoryAdapter(new InventoryAdapter.ProductDiff(), productViewModel);
 
         //getting recyclerview reference, setting adapter, and layout manager
         inventoryRecyclerView = findViewById(R.id.inventoryList);
@@ -78,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         inventoryRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //creating product view model and attaching an observer
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
         productViewModel.getAllProducts()
                  .observe(this, products -> {
                      inventoryAdapter.submitList(products);
@@ -111,17 +119,33 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
                     return true;
                 case R.id.nav_inventory:
                     productViewModel.inventory();
+                    productViewModel.getAllProducts().observe(this, list ->{
+                        inventoryAdapter.submitList(list);
+                    });
                     return true;
                 case R.id.nav_out_of_stock:
                     productViewModel.out_of_stock();
+                    productViewModel.getZeroQtyProducts().observe(this, list ->{
+                        inventoryAdapter.submitList(list);
+                    });
                     return true;
                 case R.id.nav_log_out:
                     mainModel.logout();
                     return true;
                 default:
+
                     return false;
             }
         });
+    }
+
+    public boolean dispatchTouchEvent (MotionEvent tap){
+        Rect navViewRect = new Rect();
+        navView.getGlobalVisibleRect(navViewRect);
+        if (tap.getX() > navViewRect.width() || tap.getY() > navViewRect.height()) {
+            navView.setVisibility(INVISIBLE);
+        }
+        return super.dispatchTouchEvent(tap);
     }
 
     @Override
@@ -172,7 +196,14 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
                 removeProductDialog.show(getSupportFragmentManager(), "Remove Item");
                 return true;
             case R.id.app_bar_switch:
-                Log.d("!!!MENU CLICK!!!", String.valueOf(itemId));
+                if (!item.isChecked()) {
+                    item.setChecked(true);
+                    ContextCompat.checkSelfPermission(getApplicationContext(),
+                            Manifest.permission.SEND_SMS);
+
+                } else {
+                    item.setChecked(false);
+                }
                 return true;
             default:
                 return false;

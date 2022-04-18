@@ -26,7 +26,7 @@ public interface ProductDao {
     @Query("DELETE FROM products WHERE product_sku LIKE :productSku")
     void deleteProduct(String productSku);
 
-    @Query("SELECT * FROM products WHERE qty IS 0")
+    @Query("SELECT * FROM products WHERE qty IS '0'")
     LiveData<List<Product>> getZeroQtyProducts();
 
     @Query("SELECT * FROM products WHERE product_sku LIKE :productSku")
