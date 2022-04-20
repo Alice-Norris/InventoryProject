@@ -22,45 +22,40 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment {
     TextInputEditText usernameInput;
     TextInputEditText passwordInput;
+    View loginView;
     String username;
     String password;
-
+    private MaterialButton loginButton;
     private LoginViewModel loginFragmentViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedStateInstance) {
-        loginFragmentViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
-
-        return (ViewGroup) inflater.inflate(R.layout.login_fragment, container, false);
-
+        loginView = inflater.inflate(R.layout.login_fragment, container, false);
+        return loginView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle SavedInstanceState) {
-        MaterialButton loginBtn = getView().findViewById(R.id.loginButton);
-        loginBtn.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View button) {
-        usernameInput = (TextInputEditText) getView().findViewById(R.id.usernameInput);
-        passwordInput = (TextInputEditText) getView().findViewById(R.id.passwdInput);
-        username = usernameInput.getText().toString();
-        password = passwordInput.getText().toString();
-        loginFragmentViewModel.login(username, password).observe(getActivity(), new Observer<User>() {
-            public void onChanged(User user) {
-                if (user != null && !user.userFirstName.equals("null")) {
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("userFirstName", user.userFirstName);
-                    getActivity().setResult(RESULT_OK, returnIntent);
-                    getActivity().finish();
-                }
-            }
+        loginButton = view.findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(button ->{
+            loginFragmentViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+            usernameInput = getView().findViewById(R.id.usernameInput);
+            passwordInput = getView().findViewById(R.id.passwdInput);
+            username = usernameInput.getText().toString();
+            password = passwordInput.getText().toString();
+            loginFragmentViewModel.login(username, password).observe(getViewLifecycleOwner(),
+                    user ->{
+                        if (user != null){
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("userFirstName", user.userFirstName);
+                            getActivity().setResult(RESULT_OK, returnIntent);
+                            getActivity().finish();
+                        }
+                    });
         });
     }
 }

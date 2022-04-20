@@ -14,7 +14,7 @@ public class UserRepository {
     //constructor
     public UserRepository(Application application){
         InventoryDatabase userDb = InventoryDatabase.getDatabase(application);
-        loginUserDao = userDb.userDao();;
+        loginUserDao = userDb.userDao();
     }
 
     //login query

@@ -53,9 +53,13 @@ public abstract class InventoryDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                UserDao dao = INSTANCE.userDao();
-                User nullUser = new User("null", "null", "null", "null");
-                dao.register(nullUser);
+                ProductDao productDao = INSTANCE.productDao();
+                Product testProduct1 = new Product("015834", "Strawberry", "20");
+                Product testProduct2 = new Product("583948", "Kiwi", "12");
+                Product testProduct3 = new Product("438275", "Cantaloupe", "5");
+                productDao.addProduct(testProduct1);
+                productDao.addProduct(testProduct2);
+                productDao.addProduct(testProduct3);
             });
         }
     };

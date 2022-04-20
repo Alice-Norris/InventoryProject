@@ -1,49 +1,40 @@
 <resources>
-    <string name="app_name">Inventory</string>
-    <string name="login_user_id">User ID:</string>
-    <string name="login_user_id_hint">Please enter your User ID.</string>
-    <string name="login_passwd">Password:</string>
-    <string name="login_passwd_hint">Please enter your password.</string>
-    <string name="firstNameLabel">First Name:</string>
-    <string name="firstNameHint">Please enter your first name.</string>
-    <string name="lastNameLabel">Last Name:</string>
-    <string name="lastNameHint">Please enter your last name.</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="welcome">Welcome to the Inventory App!</string>
-    <string name="registerButton">Register</string>
-    <string name="itemSkuHeader">SKU</string>
-    <string name="itemNameHeader">Product Name</string>
-    <string name="itemQtyHeader">Qty</string>
-    <string name="nav_menu_greeting">Hello, %1$s</string>
-    <string name="add_button_accessibility">add an item</string>
-    <string name="add_item">Add an Item</string>
-    <string name="remove_item">Remove an Item</string>
-    <string name="new_item_sku">Item SKU:</string>
-    <string name="new_item_name">Item Name:</string>
-    <string name="new_item_qty">Item Quantity:</string>
-    <string name="new_sku_hint">Enter product SKU</string>
-    <string name="new_name_hint">Enter product name</string>
-    <string name="new_qty_hint">Enter quantity</string>
-    <string name="sku_remove">SKU:</string>
-    <string name="sku_remove_hint">Enter SKU to remove</string>
-    <string name="remove_item_warning_text">Press \"Ok\" to delete this item from the database.</string>
-    <string name="remove_item_warning_name">Product Name: %s</string>
-    <string name="remove_item_warning_sku">SKU: %s</string>
-    <string name="remove_item_warning_header">Confirm Item Removal</string>
-    <string name="update_item_header">Update Item</string>
-    <string name="update_item_current_sku">Current SKU: %s</string>
-    <string name="update_item_current_name">Current Name: %s</string>
-    <string name="update_item_current_qty">Current Quantity: %S</string>
-    <string name="update_item_sku_input">Enter updated SKU</string>
-    <string name="update_item_name_input">Enter updated item name</string>
-    <string name="update_item_qty_input">Enter updated quantity</string>
-    <string name="update_item_sku_label">SKU:</string>
-    <string name="update_item_product_name">Name:</string>
-    <string name="update_item_qty_label">Quantity:</string>
-    <string name="allow_notification_header">Allow Notifications</string>
-    <string name="allow_notifications_dialog_text">To enable out-of-stock notifications, please grant the requested permission.</string>
-    <string name="notification_option_switch">Out of Stock Notifications</string>
+    <!--manifest application name-->
+    <string name="appName">Inventory</string>
+
+    <!--toolbar title-->
+    <string name="main_title">Inventory</string>
+
+    <!--main login screen-->
+    <string name="welcome_msg">Welcome to the Inventory App!</string>
+
+    <!--login fragment-->
+    <string name="login_password_label">Password:</string>
+    <string name="login_password_hint">Please enter your password.</string>
+    <string name="login_tab_title">Login</string>
+    <string name="login_button_label">Login</string>
+
+    <!--register fragment-->
+    <string name="register_tab_title">Register</string>
+    <string name="register_first_name_label">First Name:</string>
+    <string name="register_first_name_hint">Please enter your first name.</string>
+    <string name="register_last_name_label">Last Name:</string>
+    <string name="register_last_name_hint">Please enter your last name.</string>
+    <string name="register_user_id">User ID:</string>
+    <string name="register_user_id_hint">Please enter your User ID.</string>
+    <string name="register_password_label">Password:</string>
+    <string name="register_password_hint">Please enter your password.</string>
+    <string name="register_button_label">Register</string>
+
+    <!--inventory headers-->
+    <string name="inventory_sku_header_label">SKU</string>
+    <string name="inventory_name_header_label">Product Name</string>
+    <string name="inventory_qty_header_label">Qty</string>
+
+    <!--floating action button-->
+    <string name="desc_add_floating_button">add an item</string>
+
+    <!--navigation menu-->
     <string name="nav_greeting">Hello, %1$s!</string>
     <string name="nav_inventory">View Inventory</string>
     <string name="nav_out_of_stock">View Out of Stock Report</string>
@@ -51,4 +42,42 @@
     <string name="nav_greeting_desc">Greeting message</string>
     <string name="nav_open_inventory_desc">Open inventory</string>
     <string name="nav_out_of_stock_desc">Out of stock report</string>
+
+    <!--inventory menu-->
+    <string name="inventory_menu_add_item">Add an Item</string>
+    <string name="inventory_menu_remove_item">Remove an Item</string>
+
+    <!--add item dialog-->
+    <string name="add_item_dialog_sku_label">Item SKU:</string>
+    <string name="add_item_dialog_name_label">Item Name:</string>
+    <string name="add_item_dialog_qty_label">Item Quantity:</string>
+    <string name="add_item_dialog_sku_hint">Enter product SKU</string>
+    <string name="add_item_dialog_name_hint">Enter product name</string>
+    <string name="add_item_dialog_qty_hint">Enter quantity</string>
+
+    <!--remove item dialog-->
+    <string name="remove_item_dialog_sku_label">SKU:</string>
+    <string name="remove_item_dialog_sku_hint">Enter SKU to remove</string>
+    <string name="remove_item_warning_text">Press \"Ok\" to delete this item from the database.</string>
+    <string name="remove_item_warning_name">Product Name: %s</string>
+    <string name="remove_item_warning_sku">SKU: %s</string>
+    <string name="remove_item_warning_header">Confirm Item Removal</string>
+
+    <!--update item dialog-->
+    <string name="update_item_header">Update Item</string>
+    <string name="update_item_current_sku">Current SKU: %s</string>
+    <string name="update_item_current_name">Current Name: %s</string>
+    <string name="update_item_current_qty">Current Quantity: %S</string>
+    <string name="update_item_sku_hint">Enter updated SKU</string>
+    <string name="update_item_name_hint">Enter updated item name</string>
+    <string name="update_item_qty_hint">Enter updated quantity</string>
+    <string name="update_item_sku_label">SKU:</string>
+    <string name="update_item_name_label">Name:</string>
+    <string name="update_item_qty_label">Quantity:</string>
+
+    <!--notification dialog-->
+    <string name="allow_notification_header">Allow Notifications</string>
+    <string name="allow_notifications_dialog_text">To enable out-of-stock notifications, please grant the requested permission.</string>
+    <string name="notification_option_switch">Out of Stock Notifications</string>
+
 </resources>

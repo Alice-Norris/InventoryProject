@@ -1,19 +1,11 @@
 package com.alice_norris.inventoryproject.activities;
 
-import static android.view.MotionEvent.ACTION_BUTTON_PRESS;
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -23,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,7 +26,6 @@ import com.alice_norris.inventoryproject.R;
 import com.alice_norris.inventoryproject.adapters.InventoryAdapter;
 import com.alice_norris.inventoryproject.databinding.ActivityMainBinding;
 import com.alice_norris.inventoryproject.datamodels.MainViewModel;
-import com.alice_norris.inventoryproject.datamodels.ProductViewHolder;
 import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
 import com.alice_norris.inventoryproject.fragments.AddProductDialog;
 import com.alice_norris.inventoryproject.fragments.RemoveProductDialog;
@@ -42,7 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 
 
 //primary activity, used to view inventory
-public class MainActivity extends AppCompatActivity implements AddProductDialog.AddItemDialogListener, RemoveProductDialog.RemoveItemDialogListener{
+public class MainActivity extends AppCompatActivity{
 
     private ProductViewModel productViewModel;
     protected RecyclerView inventoryRecyclerView;
@@ -51,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     protected ActivityResultContracts.StartActivityForResult loginActivityForResult =
             new ActivityResultContracts.StartActivityForResult();
     protected LoginActivityResult loginActivityResult = new LoginActivityResult();
-    protected MainViewModel mainModel;
+    protected MainViewModel mainViewModel;
     protected NavigationView navView;
-
+    protected DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //call super constructor, get binding, set content
@@ -62,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         setContentView(binding.getRoot());
 
         //getting toolbar reference and setting it as the activity's actionbar
-        Toolbar inventoryToolbar = findViewById(R.id.inventoryToolbar);
+        Toolbar inventoryToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(inventoryToolbar);
 
         //floatingActionButton and setup
@@ -74,80 +66,71 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
 
         //creating Activity launcher for starting login activity
         loginResultLauncher = registerForActivityResult(
-                loginActivityForResult,loginActivityResult);
+                loginActivityForResult, loginActivityResult);
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         //creating inventory adapter, passing in a diffutil for when the data changes
         inventoryAdapter = new InventoryAdapter(new InventoryAdapter.ProductDiff(), productViewModel);
 
         //getting recyclerview reference, setting adapter, and layout manager
-        inventoryRecyclerView = findViewById(R.id.inventoryList);
+        inventoryRecyclerView = findViewById(R.id.main_inventory_list);
         inventoryRecyclerView.setAdapter(inventoryAdapter);
         inventoryRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //creating product view model and attaching an observer
-
         productViewModel.getAllProducts()
-                 .observe(this, products -> {
-                     inventoryAdapter.submitList(products);
-                 });
+            .observe(this, products -> {
+                inventoryAdapter.submitList(products);
+            });
 
-        //creating navClickListener, setting appBar
-        inventoryToolbar.setNavigationOnClickListener(view ->{
-            if (navView.getVisibility() == INVISIBLE){
-                navView.setVisibility(VISIBLE);
-            } else {
-                navView.setVisibility(INVISIBLE);
-            }
+        //creating navClickListener to open drawer
+        drawerLayout = findViewById(R.id.layout_drawer_main);
+            inventoryToolbar.setNavigationOnClickListener(view ->{
+                drawerLayout.open();
         });
 
-        mainModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainModel.getLoginStatus().observe(this, new Observer<Boolean>() {
+        //setting item selection listener on nav drawer
+        navView = findViewById(R.id.menu_navigation);
+        navView.setNavigationItemSelectedListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.nav_inventory){
+                productViewModel.inventory();
+                productViewModel.getAllProducts().observe(this, list ->{
+                    inventoryAdapter.submitList(list);
+                });
+            }
+            if (menuItem.getItemId() == R.id.nav_out_of_stock){
+                productViewModel.out_of_stock();
+                productViewModel.getZeroQtyProducts().observe(this, list->{
+                    inventoryAdapter.submitList(list);
+                });
+            }
+            if (menuItem.getItemId() == R.id.nav_log_out){
+                mainViewModel.logout();
+            } else {
+            }
+            drawerLayout.close();
+            return true;
+        });
+
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel.getLoginStatus().observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(@Nullable Boolean status){
-                if (status != null && !status){
+            public void onChanged(@Nullable Boolean status) {
+                if (status != null && !status) {
                     startLoginActivity();
                 }
             }
         });
 
-        navView = findViewById(R.id.nav_view);
-        navView.setNavigationItemSelectedListener(item -> {
-            navView.setVisibility(INVISIBLE);
-            switch (item.getItemId()) {
-                case R.id.nav_greeting:
-                    return true;
-                case R.id.nav_inventory:
-                    productViewModel.inventory();
-                    productViewModel.getAllProducts().observe(this, list ->{
-                        inventoryAdapter.submitList(list);
-                    });
-                    return true;
-                case R.id.nav_out_of_stock:
-                    productViewModel.out_of_stock();
-                    productViewModel.getZeroQtyProducts().observe(this, list ->{
-                        inventoryAdapter.submitList(list);
-                    });
-                    return true;
-                case R.id.nav_log_out:
-                    mainModel.logout();
-                    return true;
-                default:
-
-                    return false;
-            }
-        });
+//    public boolean dispatchTouchEvent (MotionEvent tap){
+//        Rect navViewRect = new Rect();
+//        navView.getGlobalVisibleRect(navViewRect);
+//        if (tap.getX() > navViewRect.width() || tap.getY() > navViewRect.height()) {
+//            navView.setVisibility(INVISIBLE);
+//        }
+//        return super.dispatchTouchEvent(tap);
+//    }
     }
-
-    public boolean dispatchTouchEvent (MotionEvent tap){
-        Rect navViewRect = new Rect();
-        navView.getGlobalVisibleRect(navViewRect);
-        if (tap.getX() > navViewRect.width() || tap.getY() > navViewRect.height()) {
-            navView.setVisibility(INVISIBLE);
-        }
-        return super.dispatchTouchEvent(tap);
-    }
-
     @Override
     public void onStart(){
         super.onStart();
@@ -162,15 +145,15 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     public class LoginActivityResult implements ActivityResultCallback<ActivityResult>{
         public void onActivityResult(ActivityResult result){
             if (result.getResultCode() == Activity.RESULT_OK){
-                mainModel.loginStatusChange();
-                if(result.getData() != null && result.getData().hasExtra("userFirstName")) {
+                mainViewModel.loginStatusChange();
+                if(result.getData().hasExtra("userFirstName")) {
                     String userFirstName = result.getData().getStringExtra("userFirstName");
-                    mainModel.setUserFirstName(userFirstName);
+                    mainViewModel.setUserFirstName(userFirstName);
+
                 }
-                NavigationView navView = findViewById(R.id.nav_view);
                 MenuItem navGreeting = navView.getMenu().getItem(0);
                 navGreeting.setTitle(
-                        getString(R.string.nav_menu_greeting, mainModel.getUserFirstName()));
+                        getString(R.string.nav_greeting, mainViewModel.getUserFirstName()));
             }
         }
     }
@@ -186,12 +169,10 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         int itemId = item.getItemId();
         switch (itemId){
             case R.id.addItem:
-                Log.d("!!!MENU CLICK!!!", String.valueOf(itemId));
                 DialogFragment addProductDialog = new AddProductDialog();
                 addProductDialog.show(getSupportFragmentManager(), "Add Item");
                 return true;
             case R.id.removeItem:
-                Log.d("!!!MENU CLICK!!!", String.valueOf(itemId));
                 DialogFragment removeProductDialog = new RemoveProductDialog();
                 removeProductDialog.show(getSupportFragmentManager(), "Remove Item");
                 return true;
@@ -208,14 +189,5 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             default:
                 return false;
         }
-    }
-    @Override
-    public void onDialogPositiveClick(String sku, String name, String qty){
-        productViewModel.addProduct(sku, name, qty);
-    }
-
-    @Override
-    public void onRemovePositiveClick(String sku){
-        productViewModel.removeProduct(sku);
     }
 }

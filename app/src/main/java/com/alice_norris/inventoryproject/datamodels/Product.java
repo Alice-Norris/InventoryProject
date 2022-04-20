@@ -3,6 +3,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 //defining the product table in the database.
 @Entity(tableName = "products")
 public class Product {

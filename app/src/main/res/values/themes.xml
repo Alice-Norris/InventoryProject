@@ -1,22 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.InventoryApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/amaranth_pink</item>
         <item name="colorPrimaryVariant">@color/lavender_floral</item>
         <item name="colorOnPrimary">@color/dark_liver</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/electric_blue</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/dark_liver</item>
         <item name="colorSurface">@color/baby_powder</item>
         <item name="colorOnSurface">@color/dark_liver</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:colorBackground">@color/baby_powder</item>
-        <!-- Customize your theme here. -->
     </style>
 
+    <!--styling for toolbars-->
     <style name="ToolbarStyle" parent="@style/Widget.MaterialComponents.Toolbar">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -27,8 +24,10 @@
         <item name="layout_constraintRight_toRightOf">parent</item>
         <item name="minHeight">?attr/actionBarSize</item>
         <item name="titleCentered">true</item>
+        <item name="title">@string/main_title</item>
     </style>
 
+    <!--styling for image buttons-->
     <style name="IconButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
@@ -43,31 +42,46 @@
         <item name="android:iconTint">@color/dark_liver</item>
     </style>
 
+    <!--styling for dialog text inputs-->
     <style name="DialogEditText" parent="@style/Widget.AppCompat.EditText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/baby_powder</item>
     </style>
 
+    <!--styling for dialog labels-->
     <style name="DialogTextView" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:background">@color/baby_powder</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/dark_liver</item>
     </style>
 
-    <style name="InventoryTextView" parent="@style/Widget.MaterialComponents.TextView">
+    <!--styling for inventory headers-->
+    <style name="InventoryHeader" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/border</item>
+        <item name="android:background">@drawable/inventory_border</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/dark_liver</item>
+        <item name="android:gravity">center</item>
+        <item name="layout_constraintTop_toTopOf">@id/button_header_delete</item>
+        <item name="layout_constraintBottom_toBottomOf">@id/button_header_delete</item>
     </style>
 
-    <style name="InventoryTextViewEndLeft" parent="@style/InventoryTextView">
-        <item name="android:background">@drawable/border_end_left</item>
+    <!--styling for inventory items in list-->
+    <style name="InventoryItem" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/inventory_border</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_liver</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="InventoryTextViewEndRight" parent="@style/InventoryTextView">
-        <item name="android:background">@drawable/border_end_right</item>
+    <style name="ReigsterTextEdit" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/baby_powder</item>
+        <item name="android:tag">register_input</item>
     </style>
 </resources>
