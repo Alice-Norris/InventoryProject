@@ -1,6 +1,7 @@
 package com.alice_norris.inventoryproject.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle login) {
         super.onCreate(login);
         setContentView(R.layout.login);
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
         //getting toolbar and setting it as the activity's action bar
         MaterialToolbar welcomeToolbar = findViewById(R.id.welcomeToolbar);
         setSupportActionBar(welcomeToolbar);
@@ -42,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         TabLayout welcomeTabs = findViewById(R.id.welcomeTabs);
         WelcomeTabConfigurationStrategy welcomeTabConfigure = new WelcomeTabConfigurationStrategy();
         new TabLayoutMediator(welcomeTabs, welcomePager, welcomeTabConfigure).attach();
+
+        LoginViewModel loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
     }
 }
 

@@ -13,6 +13,7 @@ public class LoginViewModel extends AndroidViewModel {
     public LoginViewModel(Application application){
         super(application);
         loginUserRepository = new UserRepository(application);
+        this.currentUser = loginUserRepository.login("null", "null");
         }
 
     public LiveData<User> login(String username, String password){

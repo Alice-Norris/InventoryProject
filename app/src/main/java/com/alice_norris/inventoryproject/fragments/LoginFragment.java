@@ -47,6 +47,7 @@ public class LoginFragment extends Fragment {
             passwordInput = getView().findViewById(R.id.passwdInput);
             username = usernameInput.getText().toString();
             password = passwordInput.getText().toString();
+            loginFragmentViewModel.login(username, password);
             loginFragmentViewModel.login(username, password).observe(getViewLifecycleOwner(),
                     user ->{
                         if (user != null){
