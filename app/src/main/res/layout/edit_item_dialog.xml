@@ -63,7 +63,7 @@
         android:ems="10"
         android:hint="@string/update_item_qty_hint"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="#545454"
         app:layout_constraintEnd_toEndOf="parent"

@@ -12,14 +12,13 @@ import com.alice_norris.inventoryproject.interfaces.ProductDao;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Single;
+import io.reactivex.Single;
 
 public class ProductRepository {
     private final ProductDao productDao;
     private LiveData<List<Product>> allProducts;
     private LiveData<List<Product>> zeroQtyProducts;
-
-
+    private Product requestedProduct;
     public ProductRepository(Application application) {
         InventoryDatabase ProductDb = InventoryDatabase.getDatabase(application);
         productDao = ProductDb.productDao();
@@ -32,12 +31,12 @@ public class ProductRepository {
                 .execute(() -> productDao.addProduct(product));
     }
 
-    Single<Product> getProductBySku(String sku){
+    Product getProductBySku(String sku){
        InventoryDatabase.databaseWriteExecutor
                .execute(() -> {
                    requestedProduct = productDao.getProductBySku(sku);
                });
-       return requestedProduct;
+       return this.requestedProduct;
     }
 
     void updateProduct(Product product){

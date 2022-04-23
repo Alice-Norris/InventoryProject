@@ -35,7 +35,7 @@
         android:ems="10"
         android:hint="@string/remove_item_dialog_sku_hint"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="@color/dark_liver"
         app:layout_constraintEnd_toEndOf="parent"

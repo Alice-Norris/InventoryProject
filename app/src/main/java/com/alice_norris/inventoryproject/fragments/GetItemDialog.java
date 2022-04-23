@@ -32,7 +32,11 @@ public class GetItemDialog extends DialogFragment {
             String itemSku = getItemSkuInput.getText().toString();
             fragmentProductViewModel.getProductBySku(itemSku);
             DialogFragment updateProductDialog = new UpdateProductDialog();
+            Bundle dialogBundle = new Bundle();
+            dialogBundle.putString("sku", itemSku);
+            updateProductDialog.setArguments(dialogBundle);
             updateProductDialog.show(getParentFragmentManager(), "Update Item");
+            this.getDialog().dismiss();
         }).setNegativeButton("Cancel", (dialogInterface, i) -> {
             this.getDialog().cancel();
         });

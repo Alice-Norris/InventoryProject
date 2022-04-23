@@ -13,7 +13,7 @@ import com.alice_norris.inventoryproject.datamodels.Product;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Single;
+import io.reactivex.Single;
 
 //interface to product table of database
 @Dao
@@ -34,8 +34,8 @@ public interface ProductDao {
     LiveData<List<Product>> getZeroQtyProducts();
 
     @Query("SELECT * FROM products WHERE product_sku LIKE :productSku")
-    Single<Product> getProductBySku(String productSku);
+    Product getProductBySku(String productSku);
 
     @Update
-    public void updateProduct(Product product);
+    void updateProduct(Product product);
 }

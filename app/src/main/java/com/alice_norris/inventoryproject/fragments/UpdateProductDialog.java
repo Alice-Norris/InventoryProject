@@ -26,11 +26,13 @@ public class UpdateProductDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         assert getActivity() != null;
+        fragmentProductViewModel = new ViewModelProvider(requireActivity())
+                .get(ProductViewModel.class);
+        String sku = getArguments().getString("sku");
+        Product product = fragmentProductViewModel.getProductBySku(sku);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.edit_item_dialog, null);
-        fragmentProductViewModel = new ViewModelProvider(requireActivity())
-                .get(ProductViewModel.class);
         TextView header = view.findViewById(R.id.update_item_dialog_header);
         TextView currentNameLabel = view.findViewById(R.id.update_item_current_name);
         TextView currentQtyLabel = view.findViewById(R.id.update_item_current_qty);

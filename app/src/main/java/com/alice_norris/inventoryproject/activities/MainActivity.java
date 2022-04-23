@@ -17,6 +17,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Update;
+
+import com.alice_norris.inventoryproject.databinding.RemoveItemWarningBinding;
+import com.alice_norris.inventoryproject.datamodels.Product;
 import com.alice_norris.inventoryproject.fragments.GetItemDialog;
 import com.alice_norris.inventoryproject.fragments.RemoveProductWarningDialog;
 import com.alice_norris.inventoryproject.fragments.UpdateProductDialog;
@@ -169,16 +173,23 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         View itemEntry = inventoryRecyclerView.getChildAt(position);
         TextView itemSku = itemEntry.findViewById(R.id.entryProductSku);
         String sku = itemSku.getText().toString();
-        productViewModel.getProductBySku(sku);
-        RemoveProductWarningDialog removeProductDialog = new RemoveProductWarningDialog();
-        removeProductDialog.show(getSupportFragmentManager(), "Remove Item");
+        Bundle dialogBundle = new Bundle();
+        dialogBundle.putString("sku", sku);
+        RemoveProductWarningDialog dialog = new RemoveProductWarningDialog();
+        dialog.setArguments(dialogBundle);
+        dialog.show(getSupportFragmentManager(), "Removal Warning");
     }
 
     @Override
     public void changeItem(int position) {
         View itemEntry = inventoryRecyclerView.getChildAt(position);
         TextView itemSku = itemEntry.findViewById(R.id.entryProductSku);
-
-        new UpdateProductDialog().show(getSupportFragmentManager(), "Update Item");
+        String sku = itemSku.getText().toString();
+        productViewModel.getProductBySku(sku);
+        Bundle dialogBundle = new Bundle();
+        dialogBundle.putString("sku", sku);
+        UpdateProductDialog updateProductDialog = new UpdateProductDialog();
+        updateProductDialog.setArguments(dialogBundle);
+        updateProductDialog.show(getSupportFragmentManager(), "Update Item");
     }
 }

@@ -17,26 +17,39 @@ import com.alice_norris.inventoryproject.databinding.ActivityMainBinding;
 import com.alice_norris.inventoryproject.datamodels.Product;
 import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
 import com.alice_norris.inventoryproject.databinding.RemoveItemWarningBinding;
+import com.google.android.material.textview.MaterialTextView;
+
+import java.util.function.Consumer;
+
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
+
 public class RemoveProductWarningDialog extends DialogFragment {
 
+    private TextView header;
+    private TextView nameLabel;
+    private TextView skuLabel;
     private ProductViewModel dialogProductViewModel;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        dialogProductViewModel = new ViewModelProvider(requireActivity())
-                .get(ProductViewModel.class);
+        String sku = getArguments().getString("sku");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.remove_item_warning, null);
-        RemoveItemWarningBinding binding = RemoveItemWarningBinding.inflate(inflater);
-        binding.setProductViewModel(dialogProductViewModel);
-        binding.setLifecycleOwner(getActivity());
-        builder.setView(binding.getRoot())
+        builder.setView(view)
                 .setPositiveButton("Remove", (dialogInterface, i) -> {
-                    dialogProductViewModel.removeProduct(dialogProductViewModel.requestedProduct2.productSku);
+                    dialogProductViewModel.removeProduct(sku);
                 })
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
                     this.getDialog().cancel();
                 });
+        skuLabel = view.findViewById(R.id.remove_item_warning_sku);
+        nameLabel = view.findViewById(R.id.remove_item_warning_name);
+        dialogProductViewModel = new ViewModelProvider(requireActivity())
+                .get(ProductViewModel.class);
+        Product product = dialogProductViewModel.getProductBySku(sku);
+        skuLabel.setText(getString(R.string.remove_item_warning_sku, product.productSku));
+        nameLabel.setText(getString(R.string.remove_item_warning_name, product.productName));
         return builder.create();
     }
 }

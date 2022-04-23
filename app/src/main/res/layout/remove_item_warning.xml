@@ -38,7 +38,7 @@
             style="@style/DialogTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{`Product Name:` + productViewModel.requestedProduct2.productSku}"
+            android:text="@{`Product Name:` + productViewModel.requestedProduct.productSku}"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,14 +49,10 @@
             style="@style/DialogTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{`Product SKU:` + productViewModel.requestedProduct2.productName}"
+            android:text="@{`Product SKU:` + productViewModel.requestedProduct.productName}"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/remove_item_warning_sku" />
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.InventoryApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.InventoryApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/amaranth_pink</item>
         <item name="colorPrimaryVariant">@color/lavender_floral</item>
         <item name="colorOnPrimary">@color/dark_liver</item>
@@ -9,8 +9,9 @@
         <item name="colorOnSecondary">@color/dark_liver</item>
         <item name="colorSurface">@color/baby_powder</item>
         <item name="colorOnSurface">@color/dark_liver</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:colorBackground">@color/baby_powder</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>
 
     <!--styling for toolbars-->
@@ -82,7 +83,16 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="ReigsterTextEdit" parent="@style/Widget.AppCompat.EditText">
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>
+        <item name="backgroundColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dark_liver</item>
+    </style>
+
+    <style name="RegisterTextEdit" parent="@style/Widget.AppCompat.EditText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/baby_powder</item>
