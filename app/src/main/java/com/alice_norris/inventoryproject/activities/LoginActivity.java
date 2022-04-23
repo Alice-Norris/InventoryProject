@@ -1,11 +1,8 @@
 package com.alice_norris.inventoryproject.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,7 +12,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import com.alice_norris.inventoryproject.adapters.WelcomeFragmentStateAdapter;
 import com.alice_norris.inventoryproject.datamodels.LoginViewModel;
-import com.alice_norris.inventoryproject.datamodels.User;
 import com.alice_norris.inventoryproject.R;
 import com.alice_norris.inventoryproject.utils.WelcomeTabConfigurationStrategy;
 
@@ -23,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
 
+    @Override
     public void onCreate(Bundle login) {
         super.onCreate(login);
         setContentView(R.layout.login);

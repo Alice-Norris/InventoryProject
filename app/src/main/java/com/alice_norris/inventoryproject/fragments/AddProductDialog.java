@@ -39,7 +39,7 @@ public class AddProductDialog extends DialogFragment {
                         fragmentProductViewModel.addProduct(sku, name, qty);
                 })
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
-                    AddProductDialog.this.getDialog().cancel();
+                    this.getDialog().cancel();
                 });
 
         return builder.create();

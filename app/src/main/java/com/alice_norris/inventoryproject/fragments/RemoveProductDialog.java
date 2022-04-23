@@ -26,7 +26,6 @@ public class RemoveProductDialog extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         fragmentProductViewModel = new ViewModelProvider(requireActivity())
                 .get(ProductViewModel.class);
-
         View view = inflater.inflate(R.layout.remove_item_dialog, null);
         builder.setView(view)
                 .setPositiveButton("Remove", (dialogInterface, i) -> {

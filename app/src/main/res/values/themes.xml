@@ -56,6 +56,12 @@
         <item name="android:textColor">@color/dark_liver</item>
     </style>
 
+    <style name="DialogHeaderTextView" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:background">@color/amaranth_pink</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/dark_liver</item>
+    </style>
     <!--styling for inventory headers-->
     <style name="InventoryHeader" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:layout_width">wrap_content</item>
@@ -64,8 +70,6 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/dark_liver</item>
         <item name="android:gravity">center</item>
-        <item name="layout_constraintTop_toTopOf">@id/button_header_delete</item>
-        <item name="layout_constraintBottom_toBottomOf">@id/button_header_delete</item>
     </style>
 
     <!--styling for inventory items in list-->

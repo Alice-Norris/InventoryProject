@@ -5,9 +5,8 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-
 public class LoginViewModel extends AndroidViewModel {
-    private UserRepository loginUserRepository;
+    private final UserRepository loginUserRepository;
     private LiveData<User> currentUser = null;
 
     public LoginViewModel(Application application){

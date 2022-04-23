@@ -1,40 +1,38 @@
 package com.alice_norris.inventoryproject.adapters;
 
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import com.alice_norris.inventoryproject.R;
+
 import com.alice_norris.inventoryproject.datamodels.Product;
 import com.alice_norris.inventoryproject.datamodels.ProductViewHolder;
-import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
-
-import java.util.List;
+import com.alice_norris.inventoryproject.utils.AdapterEventListener;
 
 public class InventoryAdapter extends ListAdapter<Product, ProductViewHolder> {
-    private ProductViewModel viewModel;
+    private final AdapterEventListener adapterEventListener;
+
     public InventoryAdapter(@NonNull DiffUtil.ItemCallback<Product> diffCallback,
-                            ProductViewModel viewModel){
+                            AdapterEventListener listener){
         super(diffCallback);
-        this.viewModel = viewModel;
+        adapterEventListener = listener;
+
     }
 
     @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         return ProductViewHolder.create(parent);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product currentProduct = getItem(position);
-        holder.bind(currentProduct.productQuantity, currentProduct.productName, currentProduct.productSku);
-        Button deleteButton = holder.getDeleteButton();
-        deleteButton.setOnClickListener(view -> {
-            viewModel.removeProduct(holder.getSkuToDelete());
-        });
+        holder.bind(currentProduct.productQuantity,
+                currentProduct.productName,
+                currentProduct.productSku,
+                adapterEventListener);
     }
 
     public static class ProductDiff extends DiffUtil.ItemCallback<Product>{

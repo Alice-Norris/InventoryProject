@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
     View loginView;
     String username;
     String password;
-    private MaterialButton loginButton;
+
     private LoginViewModel loginFragmentViewModel;
 
     @Override
@@ -40,7 +40,7 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle SavedInstanceState) {
-        loginButton = view.findViewById(R.id.loginButton);
+        MaterialButton loginButton = view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(button ->{
             loginFragmentViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
             usernameInput = getView().findViewById(R.id.usernameInput);

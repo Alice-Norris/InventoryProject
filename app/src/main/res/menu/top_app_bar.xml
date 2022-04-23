@@ -17,11 +17,20 @@
         android:visible="true"
         app:showAsAction="ifRoom|withText" />
     <item
+        android:id="@+id/update_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_update_item_24"
+        android:iconTint="@color/dark_liver"
+        android:title="@string/inventory_menu_update_item"
+        android:visible="true"
+        app:showAsAction="ifRoom|withText" />
+    <item
         android:id="@+id/app_bar_switch"
         android:checkable="true"
         android:checked="false"
         android:enabled="true"
-        android:title="Out of Stock Notifications"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/inventory_menu_notification_switch"
         app:actionLayout="@layout/switch_item"
         app:showAsAction="never" />
 </menu>

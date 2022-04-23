@@ -47,7 +47,7 @@ public abstract class InventoryDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback populateUserDatabase = new RoomDatabase.Callback() {
+    private final static RoomDatabase.Callback populateUserDatabase = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);

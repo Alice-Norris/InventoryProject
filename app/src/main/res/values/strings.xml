@@ -39,13 +39,14 @@
     <string name="nav_inventory">View Inventory</string>
     <string name="nav_out_of_stock">View Out of Stock Report</string>
     <string name="nav_logout">Logout</string>
-    <string name="nav_greeting_desc">Greeting message</string>
+    <string name="nav_greeting_desc">Hello, %1$s</string>
     <string name="nav_open_inventory_desc">Open inventory</string>
     <string name="nav_out_of_stock_desc">Out of stock report</string>
 
     <!--inventory menu-->
     <string name="inventory_menu_add_item">Add an Item</string>
     <string name="inventory_menu_remove_item">Remove an Item</string>
+    <string name="inventory_menu_notification_switch">Out of Stock Notifications</string>
 
     <!--add item dialog-->
     <string name="add_item_dialog_sku_label">Item SKU:</string>
@@ -58,26 +59,32 @@
     <!--remove item dialog-->
     <string name="remove_item_dialog_sku_label">SKU:</string>
     <string name="remove_item_dialog_sku_hint">Enter SKU to remove</string>
-    <string name="remove_item_warning_text">Press \"Ok\" to delete this item from the database.</string>
+
+
+    <!--remove item warning-->
     <string name="remove_item_warning_name">Product Name: %s</string>
     <string name="remove_item_warning_sku">SKU: %s</string>
     <string name="remove_item_warning_header">Confirm Item Removal</string>
+    <string name="remove_item_warning_text">Press \"Ok\" to delete this item from the database.</string>
 
     <!--update item dialog-->
-    <string name="update_item_header">Update Item</string>
-    <string name="update_item_current_sku">Current SKU: %s</string>
+    <string name="update_item_header">Update SKU %s</string>
     <string name="update_item_current_name">Current Name: %s</string>
-    <string name="update_item_current_qty">Current Quantity: %S</string>
-    <string name="update_item_sku_hint">Enter updated SKU</string>
+    <string name="update_item_current_qty">Current Quantity: %s</string>
     <string name="update_item_name_hint">Enter updated item name</string>
     <string name="update_item_qty_hint">Enter updated quantity</string>
-    <string name="update_item_sku_label">SKU:</string>
     <string name="update_item_name_label">Name:</string>
     <string name="update_item_qty_label">Quantity:</string>
+
+    <!--get item dialog-->
+    <string name="get_item_header">Get Item</string>
+    <string name="get_item_sku_label">SKU:</string>
+    <string name="get_item_sku_input_hint">Enter SKU of product</string>
 
     <!--notification dialog-->
     <string name="allow_notification_header">Allow Notifications</string>
     <string name="allow_notifications_dialog_text">To enable out-of-stock notifications, please grant the requested permission.</string>
     <string name="notification_option_switch">Out of Stock Notifications</string>
+    <string name="inventory_menu_update_item">Update an Item</string>
 
 </resources>

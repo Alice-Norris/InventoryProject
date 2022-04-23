@@ -38,13 +38,11 @@ public class RegisterFragment extends Fragment{
     private String lastName;
     private String username;
     private String password;
-    private View registerView;
-    private MaterialButton registerBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         registerViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
-        registerView = inflater.inflate(R.layout.register_fragment, container, false);
+        View registerView = inflater.inflate(R.layout.register_fragment, container, false);
         return registerView;
     }
 
@@ -54,7 +52,7 @@ public class RegisterFragment extends Fragment{
         lastNameInput = getView().findViewById(R.id.lastNameInput);
         usernameInput = getView().findViewById(R.id.registerUsernameInput);
         passwdInput = getView().findViewById(R.id.registerPasswdInput);
-        registerBtn = getView().findViewById(R.id.registerButton);
+        MaterialButton registerBtn = getView().findViewById(R.id.registerButton);
         registerBtn.setOnClickListener(button -> {
             firstName = firstNameInput.getText().toString();
             lastName = lastNameInput.getText().toString();

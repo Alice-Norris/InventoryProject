@@ -34,6 +34,7 @@ public class UserRepository {
                 .execute(() ->{
                    loginUserDao.register(newUser);
                 });
+
     }
 
     public LiveData<User> getUser(){

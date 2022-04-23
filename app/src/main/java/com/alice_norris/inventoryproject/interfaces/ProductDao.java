@@ -7,10 +7,14 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.alice_norris.inventoryproject.datamodels.Product;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Single;
+
 //interface to product table of database
 @Dao
 public interface ProductDao {
@@ -30,5 +34,8 @@ public interface ProductDao {
     LiveData<List<Product>> getZeroQtyProducts();
 
     @Query("SELECT * FROM products WHERE product_sku LIKE :productSku")
-    LiveData<Product> getProductBySku(String productSku);
+    Single<Product> getProductBySku(String productSku);
+
+    @Update
+    public void updateProduct(Product product);
 }

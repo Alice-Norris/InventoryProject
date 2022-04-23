@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/allow_notifications_dialog_text"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/allow_notification_dialog_header" />
