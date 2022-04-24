@@ -3,8 +3,8 @@ package com.alice_norris.inventoryproject.datamodels;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.alice_norris.inventoryproject.datamodels.InventoryDatabase;
 import com.alice_norris.inventoryproject.datamodels.Product;
@@ -12,18 +12,20 @@ import com.alice_norris.inventoryproject.interfaces.ProductDao;
 
 import java.util.List;
 
-import io.reactivex.Single;
 
 public class ProductRepository {
     private final ProductDao productDao;
     private LiveData<List<Product>> allProducts;
     private LiveData<List<Product>> zeroQtyProducts;
     private Product requestedProduct;
+    private MutableLiveData<Product> lastZeroProduct;
+
     public ProductRepository(Application application) {
         InventoryDatabase ProductDb = InventoryDatabase.getDatabase(application);
         productDao = ProductDb.productDao();
         allProducts = productDao.getProductsBySku();
         zeroQtyProducts = productDao.getZeroQtyProducts();
+        lastZeroProduct = new MutableLiveData<>();
     }
 
     void insertProduct(Product product){
@@ -42,6 +44,9 @@ public class ProductRepository {
     void updateProduct(Product product){
         InventoryDatabase.databaseWriteExecutor
                 .execute(() -> productDao.updateProduct(product));
+        if(Integer.valueOf(product.productQuantity) == 0){
+            this.lastZeroProduct.setValue(product);
+        }
     }
     void deleteProduct(String sku){
         InventoryDatabase.databaseWriteExecutor
@@ -59,4 +64,6 @@ public class ProductRepository {
     }
 
     LiveData<List<Product>> getZeroQtyProducts(){ return zeroQtyProducts; }
+
+    public LiveData<Product> getLastZeroProduct(){ return lastZeroProduct; }
 }

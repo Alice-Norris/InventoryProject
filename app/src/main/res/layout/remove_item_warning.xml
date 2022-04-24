@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable name="productViewModel" type="com.alice_norris.inventoryproject.datamodels.ProductViewModel"/>
-    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/remove_item_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/remove_item_warning_header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/amaranth_pink"
-            android:text="@string/remove_item_warning_header"
-            android:textAlignment="center"
-            android:textColor="#424242"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/remove_item_warning_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_item_warning_header"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remove_item_warning_text"
-            style="@style/DialogTextView"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/remove_item_warning_text"
@@ -33,9 +28,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/remove_item_warning_header" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remove_item_warning_sku"
-            style="@style/DialogTextView"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{`Product Name:` + productViewModel.requestedProduct.productSku}"
@@ -44,9 +39,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/remove_item_warning_text" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remove_item_warning_name"
-            style="@style/DialogTextView"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{`Product SKU:` + productViewModel.requestedProduct.productName}"
@@ -55,4 +50,3 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/remove_item_warning_sku" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>

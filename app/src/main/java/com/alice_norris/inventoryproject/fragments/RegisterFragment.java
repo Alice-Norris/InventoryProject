@@ -42,8 +42,7 @@ public class RegisterFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         registerViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
-        View registerView = inflater.inflate(R.layout.register_fragment, container, false);
-        return registerView;
+        return inflater.inflate(R.layout.register_fragment, container, false);
     }
 
     @Override

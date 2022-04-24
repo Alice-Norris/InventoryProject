@@ -19,7 +19,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
         private final TextView itemSku;
         private final Button deleteButton;
         private AdapterEventListener adapterEventListener;
-        private View viewHolderView;
+        private final View viewHolderView;
         private ProductViewHolder(View view) {
             super(view);
             this.itemQty = view.findViewById(R.id.entryProductQty);

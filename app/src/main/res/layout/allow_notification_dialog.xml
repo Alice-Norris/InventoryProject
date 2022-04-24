@@ -5,22 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/allow_notification_dialog_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/amaranth_pink"
         android:text="@string/allow_notification_header"
         android:textAlignment="center"
-        android:textColor="#424242"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView2"
-        style="@style/DialogTextView"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/allow_notifications_dialog_text"

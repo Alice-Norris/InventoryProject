@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/nav_greeting"
-        android:contentDescription="@string/nav_greeting_desc"
         android:icon="@drawable/ic_baseline_person_24"
+        android:iconTint="@color/md_theme_light_onSecondary"
         android:title="@string/nav_greeting" />
     <item
         android:id="@+id/nav_inventory"

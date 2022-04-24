@@ -9,10 +9,8 @@
         android:id="@+id/remove_item_dialog_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/amaranth_pink"
         android:text="@string/inventory_menu_remove_item"
         android:textAlignment="center"
-        android:textColor="#424242"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +18,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/remove_item_sku_label"
-        style="@style/DialogTextView"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/remove_item_dialog_sku_label"
@@ -37,7 +35,6 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        android:textColorHint="@color/dark_liver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/remove_item_sku_label"
         app:layout_constraintTop_toBottomOf="@+id/remove_item_dialog_header" />

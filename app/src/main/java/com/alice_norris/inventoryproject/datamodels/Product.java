@@ -16,7 +16,7 @@ public class Product implements Parcelable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name="product_sku")
-    public String productSku;
+    public final String productSku;
 
     @NonNull
     @ColumnInfo(name="product_name")

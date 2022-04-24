@@ -34,13 +34,11 @@ public class UpdateProductDialog extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.edit_item_dialog, null);
         TextView header = view.findViewById(R.id.update_item_dialog_header);
-        TextView currentNameLabel = view.findViewById(R.id.update_item_current_name);
-        TextView currentQtyLabel = view.findViewById(R.id.update_item_current_qty);
+        TextInputEditText currentNameInput = view.findViewById(R.id.update_item_name_input);
+        TextInputEditText currentQtyInput = view.findViewById(R.id.update_item_qty_input);
         header.setText(getString(R.string.update_item_header, product.productSku));
-        currentNameLabel.setText(
-                getString(R.string.update_item_current_name, product.productName));
-        currentQtyLabel.setText(
-                getString(R.string.update_item_current_qty, product.productQuantity));
+        currentNameInput.setText(product.productName);
+        currentQtyInput.setText(product.productQuantity);
         TextInputEditText nameInput = view.findViewById(R.id.update_item_name_input);
         TextInputEditText qtyInput = view.findViewById(R.id.update_item_qty_input);
         builder.setView(view).setPositiveButton("Update", (dialogInterface, i) ->{

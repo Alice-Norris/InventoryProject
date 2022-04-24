@@ -1,26 +1,39 @@
 package com.alice_norris.inventoryproject.activities;
 
+import static android.app.Notification.CATEGORY_STATUS;
+import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
+
 import android.Manifest;
-import android.app.DownloadManager;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Update;
 
-import com.alice_norris.inventoryproject.databinding.RemoveItemWarningBinding;
 import com.alice_norris.inventoryproject.datamodels.Product;
+import com.alice_norris.inventoryproject.fragments.AllowNotificationDialog;
 import com.alice_norris.inventoryproject.fragments.GetItemDialog;
 import com.alice_norris.inventoryproject.fragments.RemoveProductWarningDialog;
 import com.alice_norris.inventoryproject.fragments.UpdateProductDialog;
@@ -29,7 +42,6 @@ import com.alice_norris.inventoryproject.utils.LoginResultContract;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.alice_norris.inventoryproject.adapters.InventoryAdapter;
-import com.alice_norris.inventoryproject.databinding.ActivityMainBinding;
 import com.alice_norris.inventoryproject.datamodels.MainViewModel;
 import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
 import com.alice_norris.inventoryproject.fragments.AddProductDialog;
@@ -37,7 +49,8 @@ import com.alice_norris.inventoryproject.fragments.RemoveProductDialog;
 import com.alice_norris.inventoryproject.R;
 
 //primary activity, used to view inventory
-public class MainActivity extends AppCompatActivity implements AdapterEventListener {
+public class MainActivity extends AppCompatActivity implements AdapterEventListener,
+        AllowNotificationDialog.NotificationDialogListener {
 
     private ProductViewModel productViewModel;
     protected RecyclerView inventoryRecyclerView;
@@ -45,17 +58,16 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
     protected MainViewModel mainViewModel;
     protected NavigationView navView;
     protected DrawerLayout drawerLayout;
+    private ActivityResultLauncher<String> permissionsResultLauncher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //call super constructor, get binding, set content
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
         //getting toolbar reference and setting it as the activity's actionbar
         Toolbar inventoryToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(inventoryToolbar);
-
         //creating navClickListener to open drawer
         drawerLayout = findViewById(R.id.layout_drawer_main);
         inventoryToolbar.setNavigationOnClickListener(view -> drawerLayout.open());
@@ -67,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
             addItemDialog.show(getSupportFragmentManager(), "Add Item");
         });
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
+        int permission = ContextCompat.checkSelfPermission(this,  Manifest.permission.SEND_SMS);
+        if (permission == PERMISSION_GRANTED){
+            mainViewModel.setNotificationPermission(true);
+        }
+
         ActivityResultLauncher<Void> loginLauncher = createLoginActivityLauncher();
         mainViewModel.getLoginStatus().observe(this, status -> {
             if (!status) {
@@ -89,9 +107,21 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         productViewModel.getAllProducts()
                 .observe(this, products -> inventoryAdapter.submitList(products));
 
+        productViewModel.getLastZeroProduct().observe(this, product ->{
+                sendNotification(product);
+                });
         //setting item selection listener on nav drawer
         navView = findViewById(R.id.menu_navigation);
         setupNavMenu(navView);
+
+         permissionsResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(), isGranted ->{
+                    if(isGranted){
+
+                    } else {
+
+                    }
+        });
     }
 
     @Override
@@ -124,14 +154,33 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
             getItemDialog.show(getSupportFragmentManager(), "Get Item");
         } else if (itemId == R.id.app_bar_switch) {
             if (!item.isChecked()) {
-                item.setChecked(true);
-                ContextCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.SEND_SMS);
+                if(mainViewModel.getNotificationPermission()) {
+                    item.setChecked(true);
+                    //code to start notifications
+
+                } else {
+                    getSmsPermission();
+                    //code to start notifications
+
+                }
             } else {
                 item.setChecked(false);
+                //code to stop notifications
             }
         }
         return true;
+    }
+    private void getSmsPermission(){
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.SEND_SMS) == PERMISSION_GRANTED){
+
+        } else if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS)){
+                AllowNotificationDialog dialog = new AllowNotificationDialog();
+                dialog.show(getSupportFragmentManager(), null);
+
+        } else {
+
+        }
     }
 
     private ActivityResultLauncher<Void> createLoginActivityLauncher(){
@@ -188,8 +237,18 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         productViewModel.getProductBySku(sku);
         Bundle dialogBundle = new Bundle();
         dialogBundle.putString("sku", sku);
-        UpdateProductDialog updateProductDialog = new UpdateProductDialog();
-        updateProductDialog.setArguments(dialogBundle);
-        updateProductDialog.show(getSupportFragmentManager(), "Update Item");
+        UpdateProductDialog dialog = new UpdateProductDialog();
+        dialog.setArguments(dialogBundle);
+        dialog.show(getSupportFragmentManager(), "Update Item");
+    }
+
+    @Override
+    public void onNotificationDialogAllow(DialogFragment dialog) {
+        requestPermissions(new String[] {Manifest.permission.SEND_SMS}, 101);
+    }
+
+    @Override
+    public void onNotificationDialogDeny(DialogFragment dialog) {
+        mainViewModel.setNotifyDeniedPreviously(true);
     }
 }

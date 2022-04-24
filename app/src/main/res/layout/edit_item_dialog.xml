@@ -4,42 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edit_item_dialog_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/update_item_dialog_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/amaranth_pink"
         android:text="@string/update_item_header"
         android:textAlignment="center"
-        android:textColor="#424242"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/update_item_name_input"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/update_item_current_name"
-        style="@style/DialogTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/update_item_current_name"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_item_dialog_header" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/update_item_current_qty"
-        style="@style/DialogTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/update_item_current_qty"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_item_name_input" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/update_item_name_input"
@@ -51,10 +30,11 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#545454"
+        app:layout_constraintBottom_toTopOf="@+id/update_item_qty_input"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/update_item_name_label"
-        app:layout_constraintTop_toBottomOf="@+id/update_item_current_name" />
+        app:layout_constraintTop_toBottomOf="@+id/update_item_dialog_header" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/update_item_qty_input"
@@ -65,14 +45,15 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        android:textColorHint="#545454"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/update_item_qty_label"
-        app:layout_constraintTop_toBottomOf="@+id/update_item_current_qty" />
+        app:layout_constraintTop_toBottomOf="@+id/update_item_name_input" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/update_item_name_label"
-        style="@style/DialogTextView"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/update_item_name_label"
@@ -83,7 +64,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/update_item_qty_label"
-        style="@style/DialogTextView"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/update_item_qty_label"

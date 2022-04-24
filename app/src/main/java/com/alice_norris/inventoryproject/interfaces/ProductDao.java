@@ -13,7 +13,6 @@ import com.alice_norris.inventoryproject.datamodels.Product;
 
 import java.util.List;
 
-import io.reactivex.Single;
 
 //interface to product table of database
 @Dao

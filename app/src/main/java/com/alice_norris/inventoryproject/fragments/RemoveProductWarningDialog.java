@@ -7,28 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.alice_norris.inventoryproject.R;
-import com.alice_norris.inventoryproject.databinding.ActivityMainBinding;
 import com.alice_norris.inventoryproject.datamodels.Product;
 import com.alice_norris.inventoryproject.datamodels.ProductViewModel;
-import com.alice_norris.inventoryproject.databinding.RemoveItemWarningBinding;
-import com.google.android.material.textview.MaterialTextView;
-
-import java.util.function.Consumer;
-
-import io.reactivex.Scheduler;
-import io.reactivex.schedulers.Schedulers;
-
 public class RemoveProductWarningDialog extends DialogFragment {
 
     private TextView header;
-    private TextView nameLabel;
-    private TextView skuLabel;
     private ProductViewModel dialogProductViewModel;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -43,8 +30,8 @@ public class RemoveProductWarningDialog extends DialogFragment {
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
                     this.getDialog().cancel();
                 });
-        skuLabel = view.findViewById(R.id.remove_item_warning_sku);
-        nameLabel = view.findViewById(R.id.remove_item_warning_name);
+        TextView skuLabel = view.findViewById(R.id.remove_item_warning_sku);
+        TextView nameLabel = view.findViewById(R.id.remove_item_warning_name);
         dialogProductViewModel = new ViewModelProvider(requireActivity())
                 .get(ProductViewModel.class);
         Product product = dialogProductViewModel.getProductBySku(sku);

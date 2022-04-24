@@ -1,0 +1,7 @@
+<resources>>
+    <attr name="colorColor9" format="color"/>>
+    <attr name="colorOnColor9" format="color"/>>
+    <attr name="colorColor9Container" format="color"/>>
+    <attr name="colorOnColor9Container" format="color"/>>
+    <attr name="harmonizeColor9" format="boolean"/>>
+</resources>

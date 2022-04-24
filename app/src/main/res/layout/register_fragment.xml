@@ -8,14 +8,17 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/registerUsernameLabel"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/register_user_id"
         app:layout_constraintBaseline_toBaselineOf="@id/registerUsernameInput"
         app:layout_constraintEnd_toEndOf="@id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/registerPasswordLabel"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/register_password_label"
@@ -25,6 +28,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/firstNameLabel"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_first_name_label"
@@ -34,6 +38,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/lastNameLabel"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_last_name_label"
@@ -43,13 +48,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerUsernameInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/register_user_id_hint"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:textColorHint="#8D6E63"
         app:layout_constraintBottom_toTopOf="@+id/registerPasswdInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -59,13 +65,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPasswdInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/register_password_hint"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:textColorHint="#8D6E63"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -75,13 +82,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/firstNameInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="first-name"
         android:ems="10"
         android:hint="@string/register_first_name_hint"
         android:inputType="textPersonName"
-        android:textColorHint="#757575"
+        android:textColorHint="#8D6E63"
         app:layout_constraintBottom_toTopOf="@+id/lastNameInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -91,6 +99,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/lastNameInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="last-name"
@@ -98,7 +107,7 @@
         android:hint="@string/register_last_name_hint"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:textColorHint="#8D6E63"
         app:layout_constraintBottom_toTopOf="@+id/registerUsernameInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -107,10 +116,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register_button_label"
-        android:textColor="@color/dark_liver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerPasswdInput" />
 

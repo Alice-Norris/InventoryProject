@@ -2,33 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/add_item_dialog"
-    style="@style/ThemeOverlay.App.MaterialAlertDialog"
+    style="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/add_item_dialog_header"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/amaranth_pink"
         android:text="@string/inventory_menu_add_item"
         android:textAlignment="center"
-        android:textColor="#424242"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/add_item_sku_label"
-        style="@style/DialogTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/add_item_dialog_sku_label"
-        android:textAlignment="center"
-        app:layout_constraintBaseline_toBaselineOf="@id/add_item_sku_input"
-        app:layout_constraintEnd_toEndOf="@id/add_item_qty_label"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/add_item_sku_input"
@@ -39,10 +26,20 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="@color/dark_liver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/add_item_sku_label"
         app:layout_constraintTop_toBottomOf="@id/add_item_dialog_header" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/add_item_sku_label"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_item_dialog_sku_label"
+        android:textAlignment="center"
+        app:layout_constraintBaseline_toBaselineOf="@id/add_item_sku_input"
+        app:layout_constraintEnd_toEndOf="@id/add_item_qty_label"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/add_item_name_input"
@@ -53,14 +50,13 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="@color/dark_liver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/add_item_name_label"
         app:layout_constraintTop_toBottomOf="@id/add_item_sku_input" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/add_item_name_label"
-        style="@style/DialogTextView"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_item_dialog_name_label"
@@ -78,14 +74,13 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="@color/dark_liver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/add_item_qty_label"
         app:layout_constraintTop_toBottomOf="@id/add_item_name_input" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/add_item_qty_label"
-        style="@style/DialogTextView"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_item_dialog_qty_label"

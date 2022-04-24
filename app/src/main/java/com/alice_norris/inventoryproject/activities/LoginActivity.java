@@ -2,11 +2,12 @@ package com.alice_norris.inventoryproject.activities;
 
 import android.os.Bundle;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.appbar.MaterialToolbar;
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -17,15 +18,13 @@ import com.alice_norris.inventoryproject.utils.WelcomeTabConfigurationStrategy;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
-
     @Override
     public void onCreate(Bundle login) {
         super.onCreate(login);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
 
         //getting toolbar and setting it as the activity's action bar
-        MaterialToolbar welcomeToolbar = findViewById(R.id.welcomeToolbar);
+        Toolbar welcomeToolbar = (Toolbar) findViewById(R.id.welcomeToolbar);
         setSupportActionBar(welcomeToolbar);
 
         //create fragment adapter to handle fragments for the pager

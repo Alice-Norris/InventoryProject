@@ -20,25 +20,25 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/usernameInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="username"
         android:hint="@string/register_user_id_hint"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/passwdInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/usernameLabel"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_constraintVertical_chainStyle="packed"
         tools:layout_conversion_absoluteHeight="48dp"
         tools:layout_conversion_absoluteWidth="212dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/passwordLabel"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_password_label"
@@ -52,13 +52,13 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/passwdInput"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="password"
         android:hint="@string/login_password_hint"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,12 +70,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:text="@string/login_button_label"
-        android:textColor="@color/dark_liver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwdInput"
-        tools:layout_editor_absoluteX="216dp"
-        android:focusable="true"/>
+        tools:layout_editor_absoluteX="216dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

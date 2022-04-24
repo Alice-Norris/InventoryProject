@@ -8,7 +8,7 @@ import com.alice_norris.inventoryproject.interfaces.UserDao;
 
 //repository, set to use with the user database.
 public class UserRepository {
-    private UserDao loginUserDao;
+    private final UserDao loginUserDao;
     LiveData<User> matchedUser;
 
     //constructor
@@ -20,7 +20,6 @@ public class UserRepository {
     //login query
     public LiveData<User> login(String username, String password){
         //execute query
-        LiveData<User> returnedUser;
         InventoryDatabase.databaseWriteExecutor
             .execute(() -> {
                  matchedUser = loginUserDao.login(username, password);

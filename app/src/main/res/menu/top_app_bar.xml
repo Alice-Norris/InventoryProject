@@ -4,7 +4,7 @@
         android:id="@+id/addItem"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_add_box_24"
-        android:iconTint="@color/dark_liver"
+        android:iconTint="@android:color/black"
         android:title="@string/inventory_menu_add_item"
         android:visible="true"
         app:showAsAction="ifRoom|withText" />
@@ -12,7 +12,7 @@
         android:id="@+id/removeItem"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_remove_box_24"
-        android:iconTint="@color/dark_liver"
+android:iconTint="@android:color/black"
         android:title="@string/inventory_menu_remove_item"
         android:visible="true"
         app:showAsAction="ifRoom|withText" />
@@ -20,7 +20,7 @@
         android:id="@+id/update_item"
         android:enabled="true"
         android:icon="@drawable/ic_update_item_24"
-        android:iconTint="@color/dark_liver"
+android:iconTint="@android:color/black"
         android:title="@string/inventory_menu_update_item"
         android:visible="true"
         app:showAsAction="ifRoom|withText" />
