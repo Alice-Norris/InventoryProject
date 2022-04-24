@@ -58,6 +58,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/main_sku_header"
 
+                style="@style/inventory_item_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:background="@drawable/inventory_header_border_left_end"
@@ -73,6 +74,7 @@
                 android:id="@+id/main_name_header"
 
 
+                style="@style/inventory_item_textView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/inventory_header_border"
@@ -87,9 +89,10 @@
                 android:id="@+id/main_qty_header"
 
 
+                style="@style/inventory_item_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:background="@drawable/inventory_header_border"
+                android:background="@drawable/inventory_header_border_right_end"
                 android:ems="3"
                 android:text="@string/inventory_qty_header_label"
                 app:layout_constraintBottom_toBottomOf="@id/button_header_delete"
@@ -104,6 +107,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:clickable="false"
+                android:enabled="false"
                 app:icon="@drawable/ic_baseline_delete_forever_24"
                 app:layout_constraintBottom_toTopOf="@id/main_inventory_list"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -225,6 +225,8 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         View itemEntry = inventoryRecyclerView.getChildAt(position);
         TextView itemSku = itemEntry.findViewById(R.id.entryProductSku);
         String sku = itemSku.getText().toString();
+        productViewModel.getProductBySku(sku);
+        Product product = productViewModel.getRequestedProduct();
         Bundle dialogBundle = new Bundle();
         dialogBundle.putString("sku", sku);
         RemoveProductWarningDialog dialog = new RemoveProductWarningDialog();

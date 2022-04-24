@@ -38,9 +38,8 @@ public class ProductViewModel extends AndroidViewModel {
         productRepository.insertProduct(newProduct);
     }
 
-    public Product getProductBySku (String sku) {
+    public void getProductBySku (String sku) {
         this.requestedProduct = productRepository.getProductBySku(sku);
-        return this.requestedProduct;
     }
 
     public void updateProduct(Product product){

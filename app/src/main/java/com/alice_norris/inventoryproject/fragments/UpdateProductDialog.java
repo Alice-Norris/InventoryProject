@@ -29,13 +29,14 @@ public class UpdateProductDialog extends DialogFragment {
         fragmentProductViewModel = new ViewModelProvider(requireActivity())
                 .get(ProductViewModel.class);
         String sku = getArguments().getString("sku");
-        Product product = fragmentProductViewModel.getProductBySku(sku);
+        fragmentProductViewModel.getProductBySku(sku);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.edit_item_dialog, null);
         TextView header = view.findViewById(R.id.update_item_dialog_header);
         TextInputEditText currentNameInput = view.findViewById(R.id.update_item_name_input);
         TextInputEditText currentQtyInput = view.findViewById(R.id.update_item_qty_input);
+        Product product = fragmentProductViewModel.getRequestedProduct();
         header.setText(getString(R.string.update_item_header, product.productSku));
         currentNameInput.setText(product.productName);
         currentQtyInput.setText(product.productQuantity);

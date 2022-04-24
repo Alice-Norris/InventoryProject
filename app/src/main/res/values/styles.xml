@@ -11,4 +11,7 @@
         <item name="iconGravity">textStart</item>
         <item name="iconPadding">0dp</item>
     </style>
+    <style name="inventory_item_textView" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

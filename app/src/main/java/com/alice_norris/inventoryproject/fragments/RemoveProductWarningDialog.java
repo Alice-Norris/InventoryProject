@@ -21,6 +21,10 @@ public class RemoveProductWarningDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState){
         String sku = getArguments().getString("sku");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        dialogProductViewModel = new ViewModelProvider(requireActivity())
+                .get(ProductViewModel.class);
+        dialogProductViewModel.getProductBySku(sku);
+        Product product = dialogProductViewModel.getRequestedProduct();
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.remove_item_warning, null);
         builder.setView(view)
@@ -32,9 +36,6 @@ public class RemoveProductWarningDialog extends DialogFragment {
                 });
         TextView skuLabel = view.findViewById(R.id.remove_item_warning_sku);
         TextView nameLabel = view.findViewById(R.id.remove_item_warning_name);
-        dialogProductViewModel = new ViewModelProvider(requireActivity())
-                .get(ProductViewModel.class);
-        Product product = dialogProductViewModel.getProductBySku(sku);
         skuLabel.setText(getString(R.string.remove_item_warning_sku, product.productSku));
         nameLabel.setText(getString(R.string.remove_item_warning_name, product.productName));
         return builder.create();
