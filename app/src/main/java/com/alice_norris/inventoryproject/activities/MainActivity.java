@@ -11,6 +11,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
     protected NavigationView navView;
     protected DrawerLayout drawerLayout;
     private ActivityResultLauncher<String> permissionsResultLauncher;
+    private SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //call super constructor, get binding, set content
@@ -80,8 +82,10 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
             DialogFragment addItemDialog = new AddProductDialog();
             addItemDialog.show(getSupportFragmentManager(), "Add Item");
         });
+        //getting user preferences
+        preferences = getApplicationContext().getSharedPreferences("inventoryPreferences", 0);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
+        mainViewModel.setPreferenceReference(preferences);
         int permission = ContextCompat.checkSelfPermission(this,  Manifest.permission.SEND_SMS);
         if (permission == PERMISSION_GRANTED){
             mainViewModel.setNotificationPermission(true);
@@ -96,7 +100,9 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
         productViewModel.getLastZeroProduct().observeForever(zeroProduct ->{
-            createInventoryNotification(zeroProduct);
+            if(mainViewModel.getNotificationPreference()){
+                createInventoryNotification(zeroProduct);
+            }
         });
 
         //creating inventory adapter, passing in a diffutil for when the data changes
@@ -112,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         //creating product view model and attaching an observer
         productViewModel.getAllProducts()
                 .observe(this, products -> inventoryAdapter.submitList(products));
-
         //setting item selection listener on nav drawer
         navView = findViewById(R.id.menu_navigation);
         setupNavMenu(navView);
@@ -138,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        menu.getItem(3).setChecked(mainViewModel.getNotificationPreference());
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -157,17 +163,22 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
             getItemDialog.show(getSupportFragmentManager(), "Get Item");
         } else if (itemId == R.id.app_bar_switch) {
             if (!item.isChecked()) {
+                int permission = ContextCompat.checkSelfPermission(this,  Manifest.permission.SEND_SMS);
+                if (permission == PERMISSION_GRANTED){
+                    mainViewModel.setNotificationPermission(true);
+                }
                 if(mainViewModel.getNotificationPermission()) {
+                    mainViewModel.setNotificationPreference(true);
                     item.setChecked(true);
                     //code to start notifications
 
                 } else {
                     getSmsPermission();
                     //code to start notifications
-
                 }
             } else {
                 item.setChecked(false);
+                mainViewModel.setNotificationPreference(false);
                 //code to stop notifications
             }
         }
@@ -177,13 +188,11 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.SEND_SMS) == PERMISSION_GRANTED){
                 ///do permission stuff
-        } else if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS)){
+        } else //if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS))
+            {
                 AllowNotificationDialog dialog = new AllowNotificationDialog();
                 dialog.show(getSupportFragmentManager(), null);
-
-        } else {
-
-        }
+            }
     }
 
     private ActivityResultLauncher<Void> createLoginActivityLauncher(){
@@ -252,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
 
     @Override
     public void onNotificationDialogDeny(DialogFragment dialog) {
-        mainViewModel.setNotifyDeniedPreviously(true);
+        return;
     }
 
     private void createNotificationChannel(){
