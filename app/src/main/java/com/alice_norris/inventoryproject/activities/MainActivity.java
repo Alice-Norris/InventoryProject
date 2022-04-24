@@ -9,6 +9,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,7 +52,8 @@ import com.alice_norris.inventoryproject.R;
 //primary activity, used to view inventory
 public class MainActivity extends AppCompatActivity implements AdapterEventListener,
         AllowNotificationDialog.NotificationDialogListener {
-
+    final String CHANNEL_ID_INVENTORY = "channel_inventory";
+    private NotificationManager notificationManager;
     private ProductViewModel productViewModel;
     protected RecyclerView inventoryRecyclerView;
     protected InventoryAdapter inventoryAdapter;
@@ -64,9 +66,9 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         //call super constructor, get binding, set content
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //getting toolbar reference and setting it as the activity's actionbar
         Toolbar inventoryToolbar = findViewById(R.id.main_toolbar);
+        createNotificationChannel();
         setSupportActionBar(inventoryToolbar);
         //creating navClickListener to open drawer
         drawerLayout = findViewById(R.id.layout_drawer_main);
@@ -93,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         });
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
+        productViewModel.getLastZeroProduct().observeForever(zeroProduct ->{
+            createInventoryNotification(zeroProduct);
+        });
+
         //creating inventory adapter, passing in a diffutil for when the data changes
         inventoryAdapter = new InventoryAdapter(new InventoryAdapter.ProductDiff(), this);
         inventoryAdapter.setHasStableIds(true);
@@ -107,9 +113,6 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
         productViewModel.getAllProducts()
                 .observe(this, products -> inventoryAdapter.submitList(products));
 
-        productViewModel.getLastZeroProduct().observe(this, product ->{
-                sendNotification(product);
-                });
         //setting item selection listener on nav drawer
         navView = findViewById(R.id.menu_navigation);
         setupNavMenu(navView);
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
     private void getSmsPermission(){
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.SEND_SMS) == PERMISSION_GRANTED){
-
+                ///do permission stuff
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS)){
                 AllowNotificationDialog dialog = new AllowNotificationDialog();
                 dialog.show(getSupportFragmentManager(), null);
@@ -250,5 +253,32 @@ public class MainActivity extends AppCompatActivity implements AdapterEventListe
     @Override
     public void onNotificationDialogDeny(DialogFragment dialog) {
         mainViewModel.setNotifyDeniedPreviously(true);
+    }
+
+    private void createNotificationChannel(){
+
+        final String ZERO_QTY_ITEM = "com.alice_norris.inventoryproject.extra.PRODUCT";
+
+        if (Build.VERSION.SDK_INT < 26) return;
+        CharSequence name = "inventory";
+        String description = "Out of stock notification";
+        int importance = NotificationManager.IMPORTANCE_LOW;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID_INVENTORY, name, importance);
+        channel.setDescription(description);
+
+        notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+    }
+
+    private void createInventoryNotification(Product product){
+        final int NOTIFICATION_ID = 0;
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID_INVENTORY)
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle("Out of stock!")
+                .setContentText(product.productName)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .build();
+
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 }
